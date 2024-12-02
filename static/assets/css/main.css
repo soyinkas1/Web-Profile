@@ -42,6 +42,7 @@
 .light-background {
   --background-color: #f9f9f9;
   --surface-color: #ffffff;
+  /* --default-color: #ffffff; */
 }
 
 .dark-background {
@@ -537,7 +538,7 @@ section,
 
 .hero:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  background: color-mix(in srgb, var(--background-color), transparent 70%);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -1059,7 +1060,7 @@ section,
 .testimonials .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: color-mix(in srgb, var(--default-color), transparent 85%);
+  background-color: color-mix(in srgb, var(--default-color), transparent 60%);
   opacity: 1;
 }
 
