@@ -2,3 +2,5 @@ pandas
 numpy
 flask
 flask-wtf
+flask_flatpages 
+frozen_flask
