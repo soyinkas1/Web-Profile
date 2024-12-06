@@ -6,3 +6,5 @@ codeLink: https://github.com/buildwithdan/flask-portfolio/
 webHost: https://danienell.com/
 selfHost: https://local.danienell.com/
 dockerLink: https://hub.docker.com/r/buildwithdan/flask-portfolio
+filterClass: data_anal
+img: "static/assets/img/masonry-portfolio/masonry-portfolio-1.jpg"

@@ -4,3 +4,7 @@ flask
 flask-wtf
 flask_flatpages 
 frozen_flask
+flask_mail
+flask_sqlalchemy
+flask_migrate
+python-dotenv
