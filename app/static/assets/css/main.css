@@ -858,6 +858,45 @@ section,
   bottom: 0;
 }
 
+.card {
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+  transition: all 0.3s ease;
+}
+
+
+.card-img-container {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+.card:hover .card-img-top {
+  height: 100%;
+}
+
+.card-body {
+  height: 20%;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  opacity: 0;
+}
+
+.card:hover .card-body {
+  height: auto;
+  opacity: 1;
+}
+
+
+
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/

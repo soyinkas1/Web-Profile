@@ -1,5 +1,5 @@
 from flask import render_template, session, redirect, url_for, current_app
-from . import main
+from . import main_blueprint
 # from .forms import WebForm
 # from .. import db
 # from ..db_models import HeartPredictions
@@ -11,22 +11,28 @@ from app import flatpages
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
 
-# config = ConfigurationManager()
-# predict_config = config.get_prediction_pipeline_config()
 FLATPAGES_AUTO_RELOAD = os.getenv("FLATPAGES_AUTO_RELOAD")
 FLATPAGES_EXTENSION = os.getenv("FLATPAGES_EXTENSION")
 FLATPAGES_ROOT = os.getenv("FLATPAGES_ROOT")
 DIR_PROJECTS = os.getenv("DIR_PROJECTS")
+TWITTER_URL = os.getenv("TWITTER_URL")
+GITHUB_URL = os.getenv("GITHUB_URL")
+MEDIUM_URL = os.getenv("MEDIUM_URL")
+LINKEDIN_URL = os.getenv("LINKEDIN_URL")
+
 print(FLATPAGES_ROOT)
 
-@main.route('/', methods=['GET', 'POST'])
+@main_blueprint.route('/', methods=['GET', 'POST'])
 def index():
-    with current_app.app_context():
-        projects = [p for p in flatpages if p.path.startswith(DIR_PROJECTS)]
+    projects = [p for p in flatpages if p.path.startswith(DIR_PROJECTS)]
+    
     # Sort the filtered posts by date
-        latest = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
-        return render_template('index.html', project=projects)
+    latest = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+    return render_template('index.html', twitter_url=TWITTER_URL, 
+                            github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL,
+                            projects=latest)
 
       
 

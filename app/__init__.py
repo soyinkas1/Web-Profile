@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 
+
 # Create instances of the Flask extensions
 mail = Mail()
 db = SQLAlchemy()
@@ -22,11 +23,10 @@ def create_app(config_name):
     flatpages.init_app(app)
     freezer.init_app(app)
 
-    # attach routes and custom error pages here
-
-    from .main import main as main_blueprint
+    # Register the blueprint
+    from app.main import main_blueprint
     app.register_blueprint(main_blueprint)
 
-   #     from . import models, views
+   
     return app
 

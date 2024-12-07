@@ -19,7 +19,7 @@ class Config:
         DEBUG = os.getenv('DEBUG')
         FLATPAGES_AUTO_RELOAD = os.getenv('FLATPAGES_AUTO_RELOAD')
         FLATPAGES_EXTENSION = os.getenv('FLATPAGES_EXTENSION')
-        FLATPAGES_ROOT = os.getenv('FLATPAGES_ROOT ')
+        FLATPAGES_ROOT = os.getenv('FLATPAGES_ROOT')
         DIR_BLOG_POSTS = os.getenv('DIR_BLOG_POSTS')
         DIR_PROJECTS = os.getenv('DIR_PROJECTS')
 

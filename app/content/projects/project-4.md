@@ -1,6 +1,10 @@
-title: GarminAPI to SQL
-shortDesc: ETL process in which all my key garmin information is pulled from Garmin into Azure SQL and then placed PowerBI over it, to analyze my data.
-date: 2024-04-20
-tech: Python, SQL, PowerBI
-codeLink: https://github.com/buildwithdan/GarminAPI
-webHost: https://app.powerbi.com/view?r=eyJrIjoiN2Q5MmI5MjMtYzM1Yi00OGMwLTgwOWQtYjQ1NTlhODljOTU1IiwidCI6ImY1MDU3ZmI4LTk2ZGYtNDhkYi04OGZlLWQzNzgxYTYzNjE5NyJ9
+title: Oil & Gas projects for Inspections, Trainings, Drilling and Procurement
+shortDesc: Client specific defined challenges. E.g for the Bonga Water Injection project, there was a leak discovered at 1100m depth on the swivel welds. Managed the engagement and execution of inspection by Sonomatic UK.
+date: 2014-12-31
+tech: Project Management Principles, Microsoft Project, Microsoft Office (Word, Excel & PowerPoint)
+codeLink: 
+webHost: 
+readMore: https://docs.google.com/spreadsheets/d/1-2NLkwc8xIbGXP73LsUceaSfMKx8p35i?rtpof=true&authuser=soyinkas1%40gmail.com&usp=drive_fs/
+filterClass: filter-data-pm
+img: "static\\assets\\img\\portfolio\\rope-access-pm.jpg"
+tag: Project Management

@@ -1,11 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Soyinka M Sowoolu{% endblock %}
-
-
 {% block portfolio %}
-    <section id="portfolio" class="portfolio section">
 
-      <!-- Section Title -->
+
+
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
         <p>I leverage my experience and expertise in data analysis, machine learning, and statistical modeling to uncover insights and drive actionable business decisions. My portfolio showcases a variety of projects that highlight my proficiency in data wrangling, visualization, predictive modeling, and deploying machine learning models. In addition, I showcase a list of Oil & Gas related projects I managed from initiation to closure.</p>
@@ -17,183 +15,57 @@
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-data_anal">Data Analysis</li>
-            <li data-filter=".filter-product">Data Science</li>
-            <li data-filter=".filter-branding">Project Management</li>
+            <li data-filter=".filter-data-anal">Data Analysis</li>
+            <li data-filter=".filter-data-sci">Data Science</li>
+            <li data-filter=".filter-data-pm">Project Management</li>
           </ul><!-- End Portfolio Filters -->
-      
-   
-              
-              <div class="row">
-                {% for project in projects %}
-                <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+          
+          {% for project in projects %}
+<div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+    <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ project.filterClass }}">
+        <div class="card h-100">
+            <div class="card-img-container">
+                <img src="{{ project.img }}" class="card-img-top" alt="{{ project.title }}">
+            </div>
+            <div class="card-body">
+              {% if project.tag %}
+                    <p class="bi bi-tag"> {{project.tag}}</p>
+                    {% endif %}
+                <h5 class="card-title">{{ project.title }}</h5>
+                <p class="card-text">{{ project.shortDesc }}</p>
+                <p class="text-warning"><em class="">{{ project.tech }}</em></p>
+                <div class="d-flex flex-wrap">
+                    {% if project.codeLink %}
+                    <a href="{{ project.codeLink }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">Code</a>
+                    {% endif %}
+                    {% if project.dockerLink %}
+                    <a href="{{ project.dockerLink }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">Docker</a>
+                    {% endif %}
+                    {% if project.webHost %}
+                    <a href="{{ project.webHost }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">WebHost</a>
+                    {% endif %}
+                    {% if project.readMore %}
+                    <a href="{{ project.readMore }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">Read More</a>
+                    {% endif %}
+                    
+                    
 
-                  <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ filter_class }}">
-                <div class="col-sm-6 mb-3">
-                  <div class="card bg-secondary">
-                    <div class="card-body">
-                      <div
-                        class="card-title d-flex justify-content-between bg-secondary align-items-center">
-                        <h5 class="">{{ project.title }}</h5>
-                       
-                        <span class="badge badge-pill bg-dark">{{ project.date }}</span>
-                      </div>
-                      <div>
-                      <p class="card-text">{{ project.shortDesc }}</p>
-                      <p class="text-warning"><em class="">{{ project.tech }}</em></p>
-                      </div>
-                      <div class="d-flex flex-wrap">
-                          {% if project.codeLink %}
-                          <a
-                            href="{{ project.codeLink }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-primary mx-2 mb-2"
-                            >Code</a
-                          >
-                          {% endif %}
-                        
-                          {% if project.dockerLink %}
-                          <a
-                            href="{{ project.dockerLink }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-primary mx-2 mb-2"
-                            >Docker</a
-                          >
-                          {% endif %}
-                          
-                          {% if project.webHost %}
-                          <a
-                            href="{{ project.webHost }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-primary mx-2 mb-2"
-                            >WebHost</a
-                          >
-                          {% endif %}
-                        
-                          {% if project.selfHost %}
-                          <a
-                            href="{{ project.selfHost }}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-primary mx-2 mb-2"
-                            >SelfHost</a
-                          >
-                          {% endif %}
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                {% endfor %}
-              </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              
-              <!-- <img src="static/assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt=""> -->
-              <!-- <div class="portfolio-info"> -->
-                <!-- <h4>App 1</h4> -->
-                <!-- <p>Lorem ipsum, dolor sit</p> -->
-                <!-- <a href="static/assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a> -->
-                <!-- <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
-              <!-- </div> -->
-            <!-- </div>End Portfolio Item -->
-            <!-- {% endblock %} -->
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product"> -->
-              <!-- <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt=""> -->
-              <!-- <div class="portfolio-info"> -->
-                <!-- <h4>Product 1</h4> -->
-                <!-- <p>Lorem ipsum, dolor sit</p> -->
-                <!-- <a href="static/assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a> -->
-                <!-- <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
-              <!-- </div> -->
-            <!-- </div>End Portfolio Item -->
-
-            <!-- <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding"> -->
-              <!-- <img src="static/assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt=""> -->
-              <!-- <div class="portfolio-info"> -->
-                <!-- <h4>Branding 1</h4> -->
-                <!-- <p>Lorem ipsum, dolor sit</p> -->
-                <!-- <a href="static/assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a> -->
-                <!-- <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
-              <!-- </div> -->
-            <!-- </div>End Portfolio Item -->
-
-
-          </div><!-- End Portfolio Container -->
-
+            </div>
         </div>
+    </div>
+{% endfor %}
 
-      </div>
-
-    </section>/Portfolio Section
-    {% endblock %}
+{% endblock %}
+{% block miniblog %}
     <!-- Services Section -->
     <section id="services" class="services section">
 
+      
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2>Mini-Blog</h2>
+        <p>Welcome to my mini-blog page, where curate all my shared insights and updates across social media platforms such like X, LinkedIn and Medium. Explore a variety of my posts covering industry trends, knowledge share, project highlights, professional and personal opinions. </p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -296,8 +168,8 @@
         </div>
 
       </div>
-
-    </section><!-- /Services Section -->
+      {% endblock %}
+    </section><!-- /Miniblog Section -->
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section">
