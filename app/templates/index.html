@@ -79,12 +79,14 @@
               <div class="card-img-container">
                 <img src="{{ post.img }}" class="card-img-top" alt="{{ post.title }}">
             </div>
-              <a href="#" class="stretched-link">
+              <i class="bi bi-linkedin"></i>
+              <a href="{{ url_for('main.post', name=post.path.replace('blogs/', '')) }}" class="stretched-link">
                 <h3>{{post.title}}</h3>
+               
               </a>
               <p>{{post.shortDesc}}.</p>
               <a href="{{ url_for('main.post', name=post.path.replace('blogs/', '')) }}" class="btn btn-primary">Read More &rarr;</a>
-              <i class="bi bi-linkedin"></i>
+     
             </div>
           </div><!-- End miniblog Item -->
     {% endfor %} 
