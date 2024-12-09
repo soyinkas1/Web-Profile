@@ -13,23 +13,6 @@ from dotenv import load_dotenv
 from app.main.exception import CustomException
 from app.main.logging import logging
 
-
-# DEBUG = True
-# FLATPAGES_AUTO_RELOAD = DEBUG
-# FLATPAGES_EXTENSION = '.md'
-# FLATPAGES_ROOT = 'content'
-# DIR_BLOG_POSTS = 'blogs'
-# DIR_PROJECTS = 'projects'
-
-
-# app = Flask(__name__)
-# flatpages = FlatPages(app)
-# freezer = Freezer(app)
-
-
-
-
-
 # Load environment variables
 load_dotenv()
 

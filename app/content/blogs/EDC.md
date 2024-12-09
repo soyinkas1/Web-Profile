@@ -1,9 +1,10 @@
+---
 title: Everyday Tech for Coding, Music, and Beyond
 date: 2023-06-20
 published: True
-
-In this post, I'm sharing the tech setup that supports my everyday activities from coding to listening to music.
-
+shortDesc: In this post, I'm sharing the tech setup that supports my everyday activities from coding to listening to music.
+img: "static/assets/img/portfolio/Reports Dashboards.png"
+---
 ## Everyday Carry (EDC) Tech
 
 - Apple iPhone 13 ProMax
