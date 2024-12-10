@@ -4,13 +4,14 @@ from config import config
 from flask_sqlalchemy import SQLAlchemy
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
-
+from flask_bootstrap import Bootstrap
 
 # Create instances of the Flask extensions
 mail = Mail()
 db = SQLAlchemy()
 flatpages = FlatPages()
 freezer = Freezer()
+bootstrap = Bootstrap()
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -22,6 +23,7 @@ def create_app(config_name):
     db.init_app(app)
     flatpages.init_app(app)
     freezer.init_app(app)
+    bootstrap.init_app(app)
 
     # Register the blueprint
     from app.main import main_blueprint

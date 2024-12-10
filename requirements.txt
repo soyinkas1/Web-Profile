@@ -4,7 +4,9 @@ flask
 flask-wtf
 flask_flatpages 
 frozen_flask
-flask_mail
+flask-mail
 flask_sqlalchemy
-flask_migrate
+flask-migrate
 python-dotenv
+flask-bootstrap
+email_validator
