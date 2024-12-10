@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -22,6 +23,9 @@ class Config:
         FLATPAGES_ROOT = os.getenv('FLATPAGES_ROOT')
         DIR_BLOG_POSTS = os.getenv('DIR_BLOG_POSTS')
         DIR_PROJECTS = os.getenv('DIR_PROJECTS')
+        DIR_TESTIMONIALS = os.getenv('DIR_TESTIMONIALS')
+        DIR_TRAININGS = os.getenv('DIR_TRAININGS')
+        
 
 
         @staticmethod

@@ -20,6 +20,7 @@ FLATPAGES_ROOT = os.getenv("FLATPAGES_ROOT")
 DIR_PROJECTS = os.getenv("DIR_PROJECTS")
 DIR_BLOG_POSTS = os.getenv("DIR_BLOG_POSTS")
 DIR_TESTIMONIALS = os.getenv("DIR_TESTIMONIALS")
+DIR_TRAININGS = os.getenv("DIR_TRAININGS")
 TWITTER_URL = os.getenv("TWITTER_URL")
 GITHUB_URL = os.getenv("GITHUB_URL")
 MEDIUM_URL = os.getenv("MEDIUM_URL")
@@ -48,6 +49,12 @@ def index():
 
     # Sort the filtered posts by date
     latest_posts = sorted(filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+    
+     # Get the trainings
+    trainings = [t for t in flatpages if t.path.startswith(DIR_TRAININGS)]
+    
+    # Sort the filtered projects by date
+    latest_trainings = sorted(trainings, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
 
     # Get the testimonials
     testimonials = [t for t in flatpages if t.path.startswith(DIR_TESTIMONIALS)]
@@ -95,7 +102,7 @@ def index():
     
     return render_template('index.html', twitter_url=TWITTER_URL, 
                                         github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL,
-                                        projects=latest_projects, posts=latest_posts, testimonials=latest_testimonials, form=form)
+                                        projects=latest_projects, posts=latest_posts, trainings=latest_trainings, testimonials=latest_testimonials, form=form)
 
     
         
