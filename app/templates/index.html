@@ -75,14 +75,15 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-item item-cyan position-relative w-100">
                     <div class="card-img-container">
-                        <img src="{{ post.img }}" class="card-img-top" alt="{{ post.title }}">
+                        <img src="{{ post.img }}" class="card-img-top-miniblog" alt="{{ post.title }}">
                     </div>
-                    <i class="bi bi-linkedin"></i>
-                    <a href="{{ url_for('main.post', name=post.path.replace('blogs/', '')) }}" class="stretched-link">
-                        <h3>{{ post.title }}</h3>
+                    
+                    <a href="{{ post.link }}"  target="_blank">
+                       <i class="bi bi-linkedin"></i> 
                     </a>
+                    <h3>{{ post.title }}</h3>
                     <p>{{ post.shortDesc }}.</p>
-                    <a href="{{ url_for('main.post', name=post.path.replace('blogs/', '')) }}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{{ post.link }}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}
