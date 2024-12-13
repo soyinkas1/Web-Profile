@@ -10,8 +10,3 @@ img: "\\static\\assets\\img\\miniblog\\ml_common_pitfall_1223.png"
 link: https://www.linkedin.com/posts/shosowoolu_scikitlearn-scikitlearn-machinelearning-activity-7146563637497794560-PD5m?utm_source=share&utm_medium=member_desktop
 
 ---
-Working on this....
-
-Question on why ETL?
-
-Use case?

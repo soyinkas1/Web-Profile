@@ -885,6 +885,11 @@ section,
   object-fit: fill;
   transition: height 0.3s ease;
 }
+.card-img-container-miniblog {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
 
 .card:hover .card-img-top {
   height: 100%;
