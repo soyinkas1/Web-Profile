@@ -7,6 +7,7 @@ shortDesc: Data is akin to oil 🛢️ - a valuable resource that needs careful 
 
 
 img: "\\static\\assets\\img\\miniblog\\ml_common_pitfall_1223.png"
-link: https://www.linkedin.com/posts/shosowoolu_scikitlearn-scikitlearn-machinelearning-activity-7146563637497794560-PD5m?utm_source=share&utm_medium=member_desktop
+xLink: https://www.linkedin.com/posts/shosowoolu_scikitlearn-scikitlearn-machinelearning-activity-7146563637497794560-PD5m?utm_source=share&utm_medium=member_desktop
+mediumLink: 
 
 ---

@@ -78,10 +78,14 @@
                     <div class="card-img-container-miniblog">
                         <img src="{{ post.img }}" class="card-img-top-miniblog" alt="{{ post.title }}">
                     </div>
-                    
-                    <a href="{{ post.link }}"  target="_blank"
-                       class="bi bi-linkedin">
-                    </a>
+                    {% if post.xLink %}
+                    <a href="{{ post.xLink }}"  target="_blank"
+                       class="bi bi-linkedin blog-link">
+                    </a>{% endif %}
+                    {% if post.mediumLink %}
+                    <a href="{{ post.mediumLink }}"  target="_blank"
+                       class="bi bi-medium blog-link">
+                    </a>{% endif %}
                     <h5 class="card-title">{{ post.title }}</h3>
                       <br>
                     <p class="card-text">{{ post.shortDesc }}.</p>

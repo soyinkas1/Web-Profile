@@ -1,7 +1,6 @@
----
 title: Web app -Heart Diesease Predictor - Personal Project
 shortDesc: The web app utilises a binary classification model that predicts if a person has a heart disease based on health data provided.
-date: 04-09-2024
+date: 2024-09-04
 tech: Python, Flask, Scikit-Learn, Github action (CI/CD), Azure Web app, Azure MySQL
 codeLink: https://github.com/soyinkas1/PP0002_heart-diesease-project_Classification/blob/main
 webHost: https://hdpredictor.azurewebsites.net/
@@ -9,4 +8,4 @@ readMore: https://github.com/soyinkas1/PP0002_heart-diesease-project_Classificat
 filterClass: filter-data-sci
 img: "static\\assets\\img\\portfolio\\heart-diesease.jpg"
 tag: Data Science
----
+

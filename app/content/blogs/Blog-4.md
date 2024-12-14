@@ -1,6 +1,6 @@
 title: Home Network setup (WIP)
 date: 1999-09-09
-published: True
+published: No
 
 <span style="color:red"> Busy creating the content &#128075; ...</span>
 

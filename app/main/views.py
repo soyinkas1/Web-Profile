@@ -32,6 +32,7 @@ def index():
     
     # Get the projects 
     projects = [p for p in flatpages if p.path.startswith(DIR_PROJECTS)]
+
     
     # Sort the filtered projects by date
     latest_projects = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))

@@ -976,6 +976,8 @@ section,
   transform: scale(1.05); 
 }
 
+.blog-link.bi-linkedin { font-size: 2rem; /* Increase the font size */ }
+.blog-link.bi-medium { font-size: 2rem; /* Increase the font size */ }
 
 /*--------------------------------------------------------------
 # Testimonials Section
