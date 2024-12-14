@@ -57,52 +57,73 @@
 
   <main class="main">
 
-    <!-- Mini-blog Section -->
-    <section id="miniblog" class="mini-blog section">{% block miniblog %}
- 
-    <!-- miniblog Section -->
-    
+<!-- Portfolio Section -->
+<section id="portfolio" class="portfolio section">{% block portfolio %}
 
+
+
+
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Portfolio</h2>
+    <p>I leverage my experience and expertise in data analysis, machine learning, and statistical modeling to uncover insights and drive actionable business decisions. My portfolio showcases a variety of projects that highlight my proficiency in data wrangling, visualization, predictive modeling, and deploying machine learning models. In addition, I showcase a list of Oil & Gas related projects I managed from initiation to closure.</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+      <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+        <li data-filter="*" class="filter-active">All</li>
+        <li data-filter=".filter-data-anal">Data Analysis</li>
+        <li data-filter=".filter-data-sci">Data Science</li>
+        <li data-filter=".filter-data-pm">Project Management</li>
+      </ul><!-- End Portfolio Filters -->
       
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Mini-Blog</h2>
-        <p>Welcome to my mini-blog page, where I curate all my shared insights and updates across social media platforms such like X, LinkedIn and Medium. Explore a variety of my posts covering industry trends, knowledge share, project highlights, professional and personal opinions. </p>
-      </div><!-- End Section Title -->
+      {% for project in projects %}
+<div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+<div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ project.filterClass }}">
+    <div class="card h-100">
+        <div class="card-img-container">
+            <img src="{{ project.img }}" class="card-img-top" alt="{{ project.title }}">
+        </div>
+        <div class="card-body">
+          {% if project.tag %}
+                <p class="bi bi-tag"> {{project.tag}}</p>
+                {% endif %}
+            <h5 class="card-title">{{ project.title }}</h5>
+            <p class="card-text">{{ project.shortDesc }}</p>
+            <p class="text-warning"><em class="">{{ project.tech }}</em></p>
+            <div class="d-flex flex-wrap">
+                {% if project.codeLink %}
+                <a href="{{ project.codeLink }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">Code</a>
+                {% endif %}
+                {% if project.dockerLink %}
+                <a href="{{ project.dockerLink }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">Docker</a>
+                {% endif %}
+                {% if project.webHost %}
+                <a href="{{ project.webHost }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">WebHost</a>
+                {% endif %}
+                {% if project.readMore %}
+                <a href="{{ project.readMore }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mx-2 mb-2">Read More</a>
+                {% endif %}
+                
+                
 
-      <div class="container">
-        <div class="row gy-4">
-            {% for post in posts %}
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-item item-cyan position-relative w-100">
-                    <div class="card-img-container-miniblog">
-                        <img src="{{ post.img }}" class="card-img-top-miniblog" alt="{{ post.title }}">
-                    </div>
-                    
-                    <a href="{{ post.link }}"  target="_blank"
-                       class="bi bi-linkedin">
-                    </a>
-                    <h5 class="card-title">{{ post.title }}</h3>
-                      <br>
-                    <p class="card-text">{{ post.shortDesc }}.</p>
-                    <a href="{{ post.link }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
-                </div>
             </div>
-            {% endfor %}
-         
         </div>
     </div>
-    <!-- End miniblog Item -->
-    {% endblock %}
-    <br>
-    <br>
-    <br>
-    <div  >
-      <a href="{{url_for('main.index')}}#miniblog"  class="button">See Less &rarr;</a>
+</div>
+{% endfor %}
 
-    </div>
+<!-- Footer section with the button --> 
+<div class="isotope-footer"> 
+  <a href="{{url_for('main.index')}}#portfolio" class="button" >See Less</a>
+ </div>
 
-  </section><!-- /Mini-blog Section -->
+</div>
+
+
+    {% endblock %}</section>
 
 
   </main>

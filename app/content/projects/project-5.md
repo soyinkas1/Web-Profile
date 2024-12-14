@@ -1,4 +1,4 @@
-title: Web app -Heart Diesease predictor - Personal Project
+title: Web app -Heart Diesease Predictor - Personal Project
 shortDesc: The web app utilises a binary classification model that predicts if a person has a heart disease based on health data provided.
 date: 2024-09-04
 tech: Python, Flask, Scikit-Learn, Github action (CI/CD), Azure Web app, Azure MySQL

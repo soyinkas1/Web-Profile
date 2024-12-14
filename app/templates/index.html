@@ -21,7 +21,7 @@
             <li data-filter=".filter-data-pm">Project Management</li>
           </ul><!-- End Portfolio Filters -->
           
-          {% for project in projects %}
+          {% for project in projects[:6] %}
 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
     <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ project.filterClass }}">
         <div class="card h-100">
@@ -57,11 +57,21 @@
     </div>
 {% endfor %}
 
+</div>
+
+<!-- Footer section with the button --> 
+ <div class="isotope-footer"> 
+  <a href="{{url_for('main.portfolio')}}" class="button" >See More</a>
+ </div>
+
+</div>
+</div>
+
 {% endblock %}
 {% block miniblog %}
     <!-- miniblog Section -->
     
-
+   
       
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -89,7 +99,7 @@
             </div>
             {% endfor %}
             <div  >
-              <a href=" " target="_blank" class="btn btn-primary">See More &rarr;</a>
+              <a href="{{url_for('main.miniblog')}}"  class="button">See More &rarr;</a>
 
             </div>
         </div>
@@ -179,7 +189,7 @@
       </tr> 
     </thead> 
       <tbody> 
-        {% for training in trainings %} 
+        {% for training in trainings[:5] %} 
         <tr> 
           <td>{{ loop.index }}</td> 
           <td>{{training.title}}</td> 
@@ -192,6 +202,11 @@
          {% endfor %} 
         </tbody> 
       </table>
+
+      <div  >
+        <a href="{{url_for('main.trainings')}}"  class="button">See More &rarr;</a>
+
+      </div>
 
 
 

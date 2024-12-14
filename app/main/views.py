@@ -113,3 +113,45 @@ def post(name):
     post = flatpages.get_or_404(path)
     return render_template('blog-post.html', post=post)
   
+
+
+@main_blueprint.route('/miniblog', methods=['GET', 'POST'])
+def miniblog():
+
+# Get the posts
+    posts = [p for p in flatpages if p.path.startswith(DIR_BLOG_POSTS)]
+    
+    # Filter for posts for publish
+    filtered_posts = []
+    for post in posts:
+        published_status = getattr(post, "meta").get('published')
+        # print(f"Check2 - Published status for {post.path}: {published_status}")
+        if published_status == True:
+            filtered_posts.append(post)
+# Sort the filtered posts by date
+    latest_posts = sorted(filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+    
+
+    return render_template('miniblog.html', posts=latest_posts)
+
+
+@main_blueprint.route('/portfolio', methods=['GET', 'POST'])
+def portfolio():
+    # Get the projects 
+    projects = [p for p in flatpages if p.path.startswith(DIR_PROJECTS)]
+    
+    # Sort the filtered projects by date
+    latest_projects = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+
+    return render_template('portfolio.html', projects=latest_projects)
+
+
+@main_blueprint.route('/trainings', methods=['GET', 'POST'])
+def trainings():
+    # Get the trainings
+    trainings = [t for t in flatpages if t.path.startswith(DIR_TRAININGS)]
+    
+    # Sort the filtered projects by date
+    latest_trainings = sorted(trainings, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+
+    return render_template('trainings.html', trainings=latest_trainings)

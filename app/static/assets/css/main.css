@@ -907,136 +907,71 @@ section,
   opacity: 1;
 }
 
-
-
-/*--------------------------------------------------------------
-# Services Section
---------------------------------------------------------------*/
-.services .service-item {
-  background-color: var(--surface-color);
-  box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
-  height: 100%;
-  padding: 60px 30px;
+.button {
+  display: block;
+  width: 100%; 
+  max-width: 200px; 
+  margin: 20px auto; 
+  padding: 15px 25px; 
+  background-color: gold; 
+  color: white; 
+  font-size: 18px;
+  font-weight: bold; 
   text-align: center;
-  transition: 0.3s;
-  border-radius: 5px;
+  text-decoration: none; 
+  border: none; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.3s; 
 }
 
-.services .service-item .icon {
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: ease-in-out 0.3s;
-  position: relative;
+.button:hover {
+  background-color: #ffd700; 
+  transform: scale(1.05); 
 }
 
-.services .service-item .icon i {
-  font-size: 36px;
-  transition: 0.5s;
-  position: relative;
+/* Styling for the isotope layout footer */
+.isotope-footer {
+  text-align: center; 
+  margin-top: 100px; 
 }
 
-.services .service-item .icon svg {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Ensure the isotope layout container has adequate space at the bottom */
+.isotope-layout {
+  position: relative; /* Ensure it positions relative to other elements */
+  padding-bottom: 100px; /* Add padding to avoid overlap with the footer */
 }
 
-.services .service-item .icon svg path {
-  transition: 0.5s;
-  fill: color-mix(in srgb, var(--default-color), transparent 95%);
+/* Styling for the isotope layout footer */
+.isotope-footer {
+  position: absolute; 
+  bottom: 0; 
+  width: 100%; 
+  text-align: center; 
+  padding: 15px 0;
+  background-color: white; 
 }
 
-.services .service-item h3 {
-  font-weight: 700;
-  margin: 10px 0 15px 0;
-  font-size: 22px;
+/* Styling for the button in the footer */
+.isotope-footer .button {
+  display: inline-block; 
+  padding: 15px 25px; 
+  background-color: gold; 
+  color: white; 
+  font-size: 18px; 
+  font-weight: bold; 
+  text-align: center; 
+  text-decoration: none; 
+  border: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.3s; 
 }
 
-.services .service-item p {
-  line-height: 24px;
-  font-size: 14px;
-  margin-bottom: 0;
+.isotope-footer .button:hover {
+  background-color: #ffd700; 
+  transform: scale(1.05); 
 }
 
-.services .service-item:hover {
-  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.1);
-}
-
-.services .service-item.item-cyan i {
-  color: #0dcaf0;
-}
-
-.services .service-item.item-cyan:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-cyan:hover .icon path {
-  fill: #0dcaf0;
-}
-
-.services .service-item.item-orange i {
-  color: #fd7e14;
-}
-
-.services .service-item.item-orange:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-orange:hover .icon path {
-  fill: #fd7e14;
-}
-
-.services .service-item.item-teal i {
-  color: #20c997;
-}
-
-.services .service-item.item-teal:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-teal:hover .icon path {
-  fill: #20c997;
-}
-
-.services .service-item.item-red i {
-  color: #df1529;
-}
-
-.services .service-item.item-red:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-red:hover .icon path {
-  fill: #df1529;
-}
-
-.services .service-item.item-indigo i {
-  color: #6610f2;
-}
-
-.services .service-item.item-indigo:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-indigo:hover .icon path {
-  fill: #6610f2;
-}
-
-.services .service-item.item-pink i {
-  color: #f3268c;
-}
-
-.services .service-item.item-pink:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-pink:hover .icon path {
-  fill: #f3268c;
-}
 
 /*--------------------------------------------------------------
 # Testimonials Section

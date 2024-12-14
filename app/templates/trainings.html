@@ -57,52 +57,56 @@
 
   <main class="main">
 
-    <!-- Mini-blog Section -->
-    <section id="miniblog" class="mini-blog section">{% block miniblog %}
- 
-    <!-- miniblog Section -->
-    
-
+    <section id="trainings" class="training section">{% block trainings %}
       
-      <!-- Section Title -->
+      
       <div class="container section-title" data-aos="fade-up">
-        <h2>Mini-Blog</h2>
-        <p>Welcome to my mini-blog page, where I curate all my shared insights and updates across social media platforms such like X, LinkedIn and Medium. Explore a variety of my posts covering industry trends, knowledge share, project highlights, professional and personal opinions. </p>
-      </div><!-- End Section Title -->
 
-      <div class="container">
-        <div class="row gy-4">
-            {% for post in posts %}
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-item item-cyan position-relative w-100">
-                    <div class="card-img-container-miniblog">
-                        <img src="{{ post.img }}" class="card-img-top-miniblog" alt="{{ post.title }}">
-                    </div>
-                    
-                    <a href="{{ post.link }}"  target="_blank"
-                       class="bi bi-linkedin">
-                    </a>
-                    <h5 class="card-title">{{ post.title }}</h3>
-                      <br>
-                    <p class="card-text">{{ post.shortDesc }}.</p>
-                    <a href="{{ post.link }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
-                </div>
+        <h2>Trainings & Certifications</h2> 
+        <table class="table table-striped"> 
+          <thead> 
+            <tr> 
+              <th>#</th> 
+              <th>Training Title</th> 
+              <th>Facilitator</th> 
+              <th>Date Obtained</th> 
+              <th>Delivery Platform</th> 
+              <th>View Certificate</th> 
+            </tr> 
+          </thead> 
+            <tbody> 
+              {% for training in trainings[:5] %} 
+              <tr> 
+                <td>{{ loop.index }}</td> 
+                <td>{{training.title}}</td> 
+                <td>{{training.facilitator }}</td> 
+                <td>{{training.date }}</td> 
+                <td>{{training.deliveryPlatform}}</td> 
+                <td><a href="{{training.pdf_file}}" target="_blank" class="btn btn-primary">View Certificate</a></td> 
+      
+               </tr> 
+               {% endfor %} 
+              </tbody> 
+            </table>
+      
+            <div  >
+              <a href="{{url_for('main.index')}}#trainings" class="button">See Less &rarr;</a>
+      
             </div>
-            {% endfor %}
-         
-        </div>
-    </div>
-    <!-- End miniblog Item -->
-    {% endblock %}
-    <br>
-    <br>
-    <br>
-    <div  >
-      <a href="{{url_for('main.index')}}#miniblog"  class="button">See Less &rarr;</a>
+      
+      
+      
+      
+      
+      
+      {% endblock %}
 
-    </div>
+     
+    </section><!-- /Trainings Section -->
 
-  </section><!-- /Mini-blog Section -->
+
+
+
 
 
   </main>
