@@ -2,7 +2,7 @@
 title: Machine Learning Common Pitfalls - Data Leakage. 
 date: 2023-12-25
 published: True
-shortDesc: Data is akin to oil 🛢️ - a valuable resource that needs careful handling. Just as crude oil undergoes preprocessing to extract valuable products, data too requires preprocessing to glean valuable insights. 
+shortDesc: Data is akin to oil - a valuable resource that needs careful handling. Just as crude oil undergoes preprocessing to extract valuable products, data too requires preprocessing to glean valuable insights. 
 
 
 

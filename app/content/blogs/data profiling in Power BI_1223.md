@@ -2,7 +2,7 @@
 title: Unlocking the Subtle Mystery of Data Profiling in Power BI . 
 date: 2023-12-21
 published: True
-shortDesc: Have you ever been puzzled by the terms "distinct" and "unique" when working with data? 🤔Scratching your head, wondering about the  differences if any?  
+shortDesc: Have you ever been puzzled by the terms "distinct" and "unique" when working with data? Scratching your head, wondering about the  differences if any?  
 
 
 img: "\\static\\assets\\img\\miniblog\\data profiling in Power BI_1223.gif"
