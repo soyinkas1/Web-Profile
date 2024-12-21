@@ -79,17 +79,22 @@
                         <img src="{{ post.img }}" class="card-img-top-miniblog" alt="{{ post.title }}">
                     </div>
                     {% if post.xLink %}
-                    <a href="{{ post.xLink }}"  target="_blank"
-                       class="bi bi-linkedin blog-link">
-                    </a>{% endif %}
-                    {% if post.mediumLink %}
-                    <a href="{{ post.mediumLink }}"  target="_blank"
-                       class="bi bi-medium blog-link">
-                    </a>{% endif %}
+                    <span><a href="{{ post.xLink }}"  target="_blank"
+                      class="bi bi-linkedin blog-link">
+                   </a>{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                   {% if post.mediumLink %}
+                   <span><a href="{{ post.mediumLink }}"  target="_blank"
+                      class="bi bi-medium blog-link">
+                   </a>{% endif %}</span>
                     <h5 class="card-title">{{ post.title }}</h3>
                       <br>
+
                     <p class="card-text">{{ post.shortDesc }}.</p>
-                    <a href="{{ post.link }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
+                    {% if post.mediumLink %}
+                    <a href="{{ post.mediumLink }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
+                    {% else %}
+                    <a href="{{ post.xLink }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
