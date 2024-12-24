@@ -23,6 +23,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Install pa_autossh 
+        run: |
+          pip install pa_autossh
+
       - name: Deploy to PythonAnywhere
         env:
           USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
