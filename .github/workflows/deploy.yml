@@ -30,4 +30,4 @@ jobs:
           USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
           API_TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}
         run: |
-          curl -X POST "https://www.pythonanywhere.com/api/v0/user/${PYTHONANYWHERE_USERNAME}/webapps/${PYTHONANYWHERE_USERNAME}.pythonanywhere.com/reload/" \ -H "Authorization: Token ${PYTHONANYWHERE_API_TOKEN}"
+          curl -X POST "https://www.pythonanywhere.com/api/v0/user/${USERNAME}/webapps/${USERNAME}.pythonanywhere.com/reload/" \ -H "Authorization: Token ${API_TOKEN}"
