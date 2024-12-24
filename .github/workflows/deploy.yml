@@ -32,4 +32,4 @@ jobs:
           USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
           API_TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}
         run: |
-          pa_autossh deploy --username $USERNAME --api_token $API_TOKEN --domain $USERNAME.pythonanywhere.com --branch main --directory . --python '3.10'
+          curl -X POST "https://www.pythonanywhere.com/api/v0/user/${PYTHONANYWHERE_USERNAME}/webapps/${PYTHONANYWHERE_USERNAME}.pythonanywhere.com/reload/" \ -H "Authorization: Token ${PYTHONANYWHERE_API_TOKEN}"
