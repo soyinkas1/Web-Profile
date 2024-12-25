@@ -1,6 +1,12 @@
 # Save this script on your PythonAnywhere account, e.g., `deploy.sh`
 
 #!/bin/bash
+pip install python-dotenv
+# Load environment variables from the .env file
+export $(cat /home/shosowoolu/Web-Profile/.env | xargs)
+
+echo "GitHub Token: ${GTHUB_TOKEN:0:4}****"  # To verify the token
+
 cd /home/shosowoolu/Web-Profile
 git reset --hard
 git clean -fd
