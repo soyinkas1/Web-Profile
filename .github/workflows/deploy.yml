@@ -30,6 +30,6 @@ jobs:
           USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
           API_TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}
         run: |
-          sshpass -p ${{ secrets.PYTHONANYWHERE_SSH_PASSWORD }} ssh ${{ secrets.PYTHONANYWHERE_USERNAME }}@ssh.pythonanywhere.com 'bash ~/deploy.sh'
+          sshpass -p ${{ secrets.PYTHONANYWHERE_SSH_PASSWORD }} ssh -v ${{ secrets.PYTHONANYWHERE_USERNAME }}@ssh.pythonanywhere.com 'bash ~/deploy.sh'
 
 
