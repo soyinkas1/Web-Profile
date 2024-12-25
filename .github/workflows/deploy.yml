@@ -30,4 +30,6 @@ jobs:
           USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
           API_TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}
         run: |
-         curl -X POST "https://www.pythonanywhere.com/api/v0/user/${{ env.USERNAME }}/webapps/soyinkasowoolu.com/reload/" -H "Authorization": "Token ${{ env.API_TOKEN }}"
+          sshpass -p ${{ secrets.PYTHONANYWHERE_SSH_PASSWORD }} ssh ${{ secrets.PYTHONANYWHERE_USERNAME }}@ssh.pythonanywhere.com 'bash ~/deploy.sh'
+
+
