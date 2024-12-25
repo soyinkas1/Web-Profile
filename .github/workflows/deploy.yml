@@ -40,7 +40,11 @@ jobs:
           export API_TOKEN=${{ secrets.PYTHONANYWHERE_API_TOKEN }}
           export GTHUB_TOKEN=${{ secrets.GTHUB_TOKEN }}
    
+
       
       - name: Deploy to PythonAnywhere  
+        env:
+          PYTHONANYWHERE_SSH_PASSWORD: ${{ secrets.PYTHONANYWHERE_SSH_PASSWORD }}
+          GTHUB_TOKEN: ${{ secrets.GTHUB_TOKEN }}
         run: |
           sshpass -p ${{ secrets.PYTHONANYWHERE_SSH_PASSWORD }} ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -v ${{ secrets.PYTHONANYWHERE_USERNAME }}@ssh.pythonanywhere.com 'bash ~/deploy.sh'
