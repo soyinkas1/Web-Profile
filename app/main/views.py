@@ -133,7 +133,8 @@ def miniblog():
     latest_posts = sorted(filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
     
 
-    return render_template('miniblog.html', posts=latest_posts)
+    return render_template('miniblog.html', twitter_url=TWITTER_URL, 
+                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, posts=latest_posts)
 
 
 @main_blueprint.route('/portfolio', methods=['GET', 'POST'])
@@ -144,7 +145,8 @@ def portfolio():
     # Sort the filtered projects by date
     latest_projects = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
 
-    return render_template('portfolio.html', projects=latest_projects)
+    return render_template('portfolio.html', twitter_url=TWITTER_URL, 
+                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, projects=latest_projects)
 
 
 @main_blueprint.route('/trainings', methods=['GET', 'POST'])
@@ -155,4 +157,5 @@ def trainings():
     # Sort the filtered projects by date
     latest_trainings = sorted(trainings, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
 
-    return render_template('trainings.html', trainings=latest_trainings)
+    return render_template('trainings.html', twitter_url=TWITTER_URL, 
+                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, trainings=latest_trainings)

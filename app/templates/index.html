@@ -99,8 +99,12 @@
                     
                     <h5 class="card-title">{{ post.title }}</h3>
                       <br>
-                    <p class="card-text">{{ post.shortDesc }}.</p>
-                    <a href="{{ post.xLink }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
+                      <p class="card-text">{{ post.shortDesc }}.</p>
+                      {% if post.mediumLink %}
+                      <a href="{{ post.mediumLink }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
+                      {% else %}
+                      <a href="{{ post.xLink }}" target="_blank" class="btn btn-primary">Read More &rarr;</a>
+                      {% endif %}
                 </div>
             </div>
             {% endfor %}
