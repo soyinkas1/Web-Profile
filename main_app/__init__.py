@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_mail import Mail
-from config import config
+from main_app.config import config
 from flask_sqlalchemy import SQLAlchemy
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer

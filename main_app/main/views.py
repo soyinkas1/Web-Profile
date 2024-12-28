@@ -7,7 +7,7 @@ from .data import CustomData
 from .exception import CustomException
 from . import email
 from .logging import logging
-from app import flatpages
+from main_app import flatpages
 from dotenv import load_dotenv
 import os
 import sys
