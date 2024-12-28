@@ -164,4 +164,5 @@ cython_debug/
 # databases
 *.sqlite
 database_check.ipynb
+/migrations
 
