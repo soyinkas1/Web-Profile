@@ -1,10 +1,31 @@
-<main>
-    <section>
-        <h2>. . . . . . .</h2>
-        <p> You sent this message: {{confirm}}
-          
-        </p> 
-        <br>
-        <br>
 
-    </section>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Form Confirmation</title>
+        <style>
+            .confirmation-message {
+                border: 1px solid #6394d4;
+                background-color: #dff0d8;
+                color: #6394d4;
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 5px;
+                font-family: Arial, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="confirmation-message">
+            <h2>Message Sent Successfully!</h2>
+            <p>Dear {{ name }},</p>
+            <p>Thank you for contacting me. I have received your message and will get back to you shortly.</p>
+            <p>If you have any further questions, feel free to reply to this email or contact me directly at +44 773 379 7844.</p>
+            <p>Best regards,<br>Soyinka M Sowoolu</p>
+        </div>
+    </body>
+    </html>
+    
