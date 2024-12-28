@@ -2,7 +2,7 @@ from flask import render_template, session, redirect, url_for, current_app, flas
 from . import main_blueprint
 from .forms import WebForm
 from .. import db
-from app.db_models import ContactTable
+from main_app.db_models import ContactTable
 from .data import CustomData
 from .exception import CustomException
 from . import email

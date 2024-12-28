@@ -26,7 +26,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
 
     # Register the blueprint
-    from app.main import main_blueprint
+    from main_app.main import main_blueprint
     app.register_blueprint(main_blueprint)
 
    
