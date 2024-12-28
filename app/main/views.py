@@ -63,7 +63,7 @@ def index():
     
     # Sort the filtered projects by date
     latest_testimonials = sorted(testimonials, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
-    print(MAIL_USERNAME)
+    
     logging.info('test')
     # Contact form data collection
     try:
