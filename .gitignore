@@ -166,3 +166,5 @@ cython_debug/
 database_check.ipynb
 /migrations
 
+
+deploy.sh
