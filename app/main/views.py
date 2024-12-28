@@ -25,6 +25,7 @@ TWITTER_URL = os.getenv("TWITTER_URL")
 GITHUB_URL = os.getenv("GITHUB_URL")
 MEDIUM_URL = os.getenv("MEDIUM_URL")
 LINKEDIN_URL = os.getenv("LINKEDIN_URL")
+MAIL_USERNAME = os.getenv("MAIL_USERNAME")
 
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
@@ -87,8 +88,8 @@ def index():
 
             logging.info('Database updated')
             # Email results 
-            email.send_email(['soyinka.sowoolu@gmail.com', data_df['email'].iloc[0]], data_df['subject'].iloc[0],
-    'mail', message=data_df['message'].iloc[0])
+            email.send_email([MAIL_USERNAME, data_df['email'].iloc[0]], data_df['subject'].iloc[0],
+    'mail', message=data_df['message'].iloc[0], name=data_df['name'].iloc[0])
             confirm = 'Message sent'
             flash(confirm, 'success')
 

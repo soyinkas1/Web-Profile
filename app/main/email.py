@@ -18,7 +18,7 @@ def send_async_email(app, msg):
 
 def send_email(to, subject, template, **kwargs):
     app = current_app._get_current_object()
-    print(to)
+  
     msg = Message(MAIL_SUBJECT_PREFIX + subject,
                   sender=MAIL_SENDER, recipients=to)
     msg.html = render_template(template + '.html', **kwargs)
