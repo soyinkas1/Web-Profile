@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
   {% block styles %}
   <!-- Favicons -->
-  <link href="static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/title_image.jpeg" rel="icon">
   <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -79,8 +79,9 @@
         <li data-filter=".filter-data-pm">Project Management</li>
       </ul><!-- End Portfolio Filters -->
       
-      {% for project in projects %}
+     
 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+   {% for project in projects %}
 <div class="col-lg-4 col-md-6 portfolio-item isotope-item {{ project.filterClass }}">
     <div class="card h-100">
         <div class="card-img-container">

@@ -14,6 +14,7 @@ import sys
 
 load_dotenv()
 
+<<<<<<< HEAD:main_app/main/views.py
 FLATPAGES_AUTO_RELOAD = os.getenv("MAIN_FLATPAGES_AUTO_RELOAD")
 FLATPAGES_EXTENSION = os.getenv("MAIN_FLATPAGES_EXTENSION")
 FLATPAGES_ROOT = os.getenv("MAIN_FLATPAGES_ROOT")
@@ -25,6 +26,20 @@ TWITTER_URL = os.getenv("MAIN_TWITTER_URL")
 GITHUB_URL = os.getenv("MAIN_GITHUB_URL")
 MEDIUM_URL = os.getenv("MAIN_MEDIUM_URL")
 LINKEDIN_URL = os.getenv("MAIN_LINKEDIN_URL")
+=======
+FLATPAGES_AUTO_RELOAD = os.getenv("FLATPAGES_AUTO_RELOAD")
+FLATPAGES_EXTENSION = os.getenv("FLATPAGES_EXTENSION")
+FLATPAGES_ROOT = os.getenv("FLATPAGES_ROOT")
+DIR_PROJECTS = os.getenv("DIR_PROJECTS")
+DIR_BLOG_POSTS = os.getenv("DIR_BLOG_POSTS")
+DIR_TESTIMONIALS = os.getenv("DIR_TESTIMONIALS")
+DIR_TRAININGS = os.getenv("DIR_TRAININGS")
+TWITTER_URL = os.getenv("TWITTER_URL")
+GITHUB_URL = os.getenv("GITHUB_URL")
+MEDIUM_URL = os.getenv("MEDIUM_URL")
+LINKEDIN_URL = os.getenv("LINKEDIN_URL")
+MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+>>>>>>> main:app/main/views.py
 
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
@@ -62,7 +77,7 @@ def index():
     
     # Sort the filtered projects by date
     latest_testimonials = sorted(testimonials, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
-  
+    
     logging.info('test')
     # Contact form data collection
     try:
@@ -87,8 +102,8 @@ def index():
 
             logging.info('Database updated')
             # Email results 
-            email.send_email(['soyinka.sowoolu@gmail.com', data_df['email'].iloc[0]], data_df['subject'].iloc[0],
-    'mail', message=data_df['message'].iloc[0])
+            email.send_email([MAIL_USERNAME, data_df['email'].iloc[0]], data_df['subject'].iloc[0],
+    'mail', message=data_df['message'].iloc[0], name=data_df['name'].iloc[0])
             confirm = 'Message sent'
             flash(confirm, 'success')
 
@@ -133,7 +148,8 @@ def miniblog():
     latest_posts = sorted(filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
     
 
-    return render_template('miniblog.html', posts=latest_posts)
+    return render_template('miniblog.html', twitter_url=TWITTER_URL, 
+                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, posts=latest_posts)
 
 
 @main_blueprint.route('/portfolio', methods=['GET', 'POST'])
@@ -144,7 +160,8 @@ def portfolio():
     # Sort the filtered projects by date
     latest_projects = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
 
-    return render_template('portfolio.html', projects=latest_projects)
+    return render_template('portfolio.html', twitter_url=TWITTER_URL, 
+                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, projects=latest_projects)
 
 
 @main_blueprint.route('/trainings', methods=['GET', 'POST'])
@@ -155,4 +172,5 @@ def trainings():
     # Sort the filtered projects by date
     latest_trainings = sorted(trainings, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
 
-    return render_template('trainings.html', trainings=latest_trainings)
+    return render_template('trainings.html', twitter_url=TWITTER_URL, 
+                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, trainings=latest_trainings)

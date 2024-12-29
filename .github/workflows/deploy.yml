@@ -18,16 +18,33 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
+      # - name: Install dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install -r requirements.txt
+
+      - name: Install sshpass 
+        run: | 
+          sudo apt-get update 
+          sudo apt-get install -y sshpass
+
+      - name: Add known hosts entry
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          mkdir -p ~/.ssh
+          ssh-keyscan ssh.pythonanywhere.com >> ~/.ssh/known_hosts
 
-  
 
-      - name: Deploy to PythonAnywhere
+      - name: env setup
+        run: |
+          export USERNAME=${{ secrets.PYTHONANYWHERE_USERNAME }}
+          export API_TOKEN=${{ secrets.PYTHONANYWHERE_API_TOKEN }}
+          export GTHUB_TOKEN=${{ secrets.GTHUB_TOKEN }}
+   
+
+      
+      - name: Deploy to PythonAnywhere  
         env:
-          USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
-          API_TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}
+          PYTHONANYWHERE_SSH_PASSWORD: ${{ secrets.PYTHONANYWHERE_SSH_PASSWORD }}
+          GTHUB_TOKEN: ${{ secrets.GTHUB_TOKEN }}
         run: |
-         curl -X POST "https://www.pythonanywhere.com/api/v0/user/${{ env.USERNAME }}/webapps/soyinkasowoolu.com/reload/" -H "Authorization": "Token ${{ env.API_TOKEN }}"
+          sshpass -p ${{ secrets.PYTHONANYWHERE_SSH_PASSWORD }} ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -v ${{ secrets.PYTHONANYWHERE_USERNAME }}@ssh.pythonanywhere.com 'bash ~/deploy.sh'
