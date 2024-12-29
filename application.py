@@ -116,24 +116,36 @@ main_app.shell_context_processor(make_main_shell_context)
 demo_app.shell_context_processor(make_demo1_shell_context)
 
 # Initialize and migrate databases for both apps
-def initialize_and_migrate(app, db, migrate):
+def initialize_and_migrate(app, db, migrate, migrations_subfolder):
+    """
+    Initialize and migrate the database for a specific app.
+    
+    Args:
+        app: Flask app instance.
+        db: SQLAlchemy database instance.
+        migrate: Flask-Migrate instance.
+        migrations_subfolder: Subfolder name for the app's migrations directory.
+    """
     with app.app_context():
-        migrations_path = os.path.join(os.path.dirname(__file__), 'migrations')
+        migrations_path = os.path.join(os.path.dirname(__file__), migrations_subfolder)
         if not os.path.exists(migrations_path):
             try:
-                flask_migrate_init()
-                logging.info(f"Migration repository initialized for {app.name}.")
+                flask_migrate_init(directory=migrations_subfolder)
+                logging.info(f"Migration repository initialized for {app.name} at {migrations_subfolder}..")
             except Exception as e:
                 raise CustomException(e, sys)
         try:
-            flask_migrate_migrate(message="Initial migration.")
-            flask_migrate_upgrade()
+            flask_migrate_migrate(directory=migrations_subfolder, message="Initial migration.")
+            flask_migrate_upgrade(directory=migrations_subfolder)
             logging.info(f'Database upgraded successfully for {app.name}.')
         except Exception as e:
+            logging.error(f"Error during migration for {app.name}: {e}")
             raise CustomException(e, sys)
 
-initialize_and_migrate(main_app, main_db, migrate_main)
-initialize_and_migrate(demo_app, demo1_db, migrate_demo1)
+main_migrations_subfolder = "migrations/main_app"
+demo1_app_migrations_subfolder = "migrations/demo1_app"
+initialize_and_migrate(main_app, main_db, migrate_main, migrations_subfolder=main_migrations_subfolder )
+initialize_and_migrate(demo_app, demo1_db, migrate_demo1, migrations_subfolder=demo1_app_migrations_subfolder)
 
 @app.cli.command()
 def test():
