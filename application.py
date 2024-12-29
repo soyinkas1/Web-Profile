@@ -83,6 +83,7 @@ from flask_migrate import Migrate, init as flask_migrate_init, migrate as flask_
 from dotenv import load_dotenv
 from main_app.main.exception import CustomException
 from main_app.main.logging import logging
+from demo_app1.app.main import demo1_app
 
 # Load environment variables for both apps
 load_dotenv(dotenv_path='main_app/.env')   
@@ -90,7 +91,7 @@ load_dotenv(dotenv_path='demo_app1_app/app/.env')
     
 # Create the main and demo apps
 main_app = create_main_app(os.getenv('MAIN_FLASK_CONFIG') or 'default')
-demo1_app = create_demo1_app(os.getenv('DEMO1_FLASK_CONFIG') or 'default')
+demo_app = create_demo1_app(os.getenv('DEMO1_FLASK_CONFIG') or 'default')
 
 # Register the demo app as a Blueprint within the main app
 main_app.register_blueprint(demo1_app, url_prefix='/demo1')
@@ -99,7 +100,7 @@ app = main_app  # Set the main app as the primary application
 
 # Configure migrations for both databases
 migrate_main = Migrate(main_app, main_db)
-migrate_demo1 = Migrate(demo1_app, demo1_db)
+migrate_demo1 = Migrate(demo_app, demo1_db)
 
 logging.info('Main app and demo1 app created')
 
@@ -112,7 +113,7 @@ def make_demo1_shell_context():
     return dict(db=demo1_db, Predictions=Demo1Table)
 
 main_app.shell_context_processor(make_main_shell_context)
-demo1_app.shell_context_processor(make_demo1_shell_context)
+demo_app.shell_context_processor(make_demo1_shell_context)
 
 # Initialize and migrate databases for both apps
 def initialize_and_migrate(app, db, migrate):
@@ -132,7 +133,7 @@ def initialize_and_migrate(app, db, migrate):
             raise CustomException(e, sys)
 
 initialize_and_migrate(main_app, main_db, migrate_main)
-initialize_and_migrate(demo1_app, demo1_db, migrate_demo1)
+initialize_and_migrate(demo_app, demo1_db, migrate_demo1)
 
 @app.cli.command()
 def test():
