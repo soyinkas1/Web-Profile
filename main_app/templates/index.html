@@ -230,7 +230,38 @@
           <div class="swiper-pagination"></div>
         </div>
 
-   
+    <!-- Demo Section -->
+    {% block demo %}
+
+     <!-- Section Title -->
+     <div class="container section-title" data-aos="fade-up">
+      <h2>Web Application Demos</h2>
+      <p>Explore and evaluate innovative Data Analysis and Machine Learning web applications, built using Python, Dash, and more, live and deployed for real-world use hosted on this domain.</p>
+    </div><!-- End Section Title -->
+    
+    <div class="demo-card-container"> 
+      <div class="demo-card"> 
+        <h3>Heart Diesease Predictor App</h3> 
+        <p>Explore the Python-based web application designed to predict the risk of heart diesease.</p> 
+        <a href="{{ url_for('demo1_app.demo1_app_home') }}" class="demo-btn">View App</a> </div> 
+        
+        <!-- <div class="demo-card"> 
+          <h3>Dash Interactive Dashboard</h3> 
+          <p>Experience the power of Dash with this interactive dashboard showcasing real-time data.</p> 
+          <a href=" " class="demo-btn">View App</a> </div>  -->
+          
+          <!-- Add more cards as needed --> 
+          </div>
+    
+    
+    
+    
+    
+    {% endblock %}
+
+     
+
+    
 
 
 

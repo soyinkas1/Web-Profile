@@ -1,5 +1,5 @@
 import datetime
-from app import db
+from main_app import db
 
 class ContactTable(db.Model):
     __tablename__='contact_table'

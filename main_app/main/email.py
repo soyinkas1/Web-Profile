@@ -1,7 +1,7 @@
 from flask.templating import render_template, current_app
 from flask_mail import Message
 from threading import Thread
-from app import mail
+from main_app import mail
 from dotenv import load_dotenv
 import os
 

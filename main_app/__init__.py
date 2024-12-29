@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_mail import Mail
-from config import config
+from main_app.config import config
 from flask_sqlalchemy import SQLAlchemy
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
@@ -26,7 +26,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
 
     # Register the blueprint
-    from app.main import main_blueprint
+    from main_app.main import main_blueprint
     app.register_blueprint(main_blueprint)
 
    

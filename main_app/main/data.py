@@ -1,9 +1,9 @@
 import sys
 import pandas as pd
-from app.main.exception import CustomException
-from app.main.logging import logging
-from app.db_models import ContactTable
-from app import db
+from main_app.main.exception import CustomException
+from main_app.main.logging import logging
+from main_app.db_models import ContactTable
+from main_app import db
 from datetime import datetime
 
 class CustomData:

@@ -2,18 +2,31 @@ from flask import render_template, session, redirect, url_for, current_app, flas
 from . import main_blueprint
 from .forms import WebForm
 from .. import db
-from app.db_models import ContactTable
+from main_app.db_models import ContactTable
 from .data import CustomData
 from .exception import CustomException
 from . import email
 from .logging import logging
-from app import flatpages
+from main_app import flatpages
 from dotenv import load_dotenv
 import os
 import sys
 
 load_dotenv()
 
+<<<<<<< HEAD:main_app/main/views.py
+FLATPAGES_AUTO_RELOAD = os.getenv("MAIN_FLATPAGES_AUTO_RELOAD")
+FLATPAGES_EXTENSION = os.getenv("MAIN_FLATPAGES_EXTENSION")
+FLATPAGES_ROOT = os.getenv("MAIN_FLATPAGES_ROOT")
+DIR_BLOG_POSTS = os.getenv("MAIN_DIR_BLOG_POSTS")
+DIR_PROJECTS = os.getenv("MAIN_DIR_PROJECTS")
+DIR_TESTIMONIALS = os.getenv("MAIN_DIR_TESTIMONIALS")
+DIR_TRAININGS = os.getenv("MAIN_DIR_TRAININGS")
+TWITTER_URL = os.getenv("MAIN_TWITTER_URL")
+GITHUB_URL = os.getenv("MAIN_GITHUB_URL")
+MEDIUM_URL = os.getenv("MAIN_MEDIUM_URL")
+LINKEDIN_URL = os.getenv("MAIN_LINKEDIN_URL")
+=======
 FLATPAGES_AUTO_RELOAD = os.getenv("FLATPAGES_AUTO_RELOAD")
 FLATPAGES_EXTENSION = os.getenv("FLATPAGES_EXTENSION")
 FLATPAGES_ROOT = os.getenv("FLATPAGES_ROOT")
@@ -26,6 +39,7 @@ GITHUB_URL = os.getenv("GITHUB_URL")
 MEDIUM_URL = os.getenv("MEDIUM_URL")
 LINKEDIN_URL = os.getenv("LINKEDIN_URL")
 MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+>>>>>>> main:app/main/views.py
 
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
