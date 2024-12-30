@@ -1,0 +1,20 @@
+{% extends "demo1_app_base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}Heart Diesease Predictor{% endblock %}
+{% block content %}<h2>Instructions:</h2>
+<br>
+<p>1. Input the health data</p>
+
+<p>2. Click submit after inputing the data</p>
+
+
+<div class="form-wrapper">
+    
+    <form method="POST" action="{{ url_for('demo1_app.predict_datapoint') }}">
+        {{ wtf.quick_form(form) }}
+    </form>
+</div>
+
+
+
+{% endblock %}

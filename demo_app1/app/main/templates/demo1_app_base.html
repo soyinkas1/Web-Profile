@@ -1,0 +1,88 @@
+<!doctype html>
+<html>  
+  <head>
+  {% block head %}
+  
+    {% block styles %}
+    
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('demo1_app.static', filename='bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- custom styling -->
+    <link href="{{ url_for('demo1_app.static', filename='style.css') }}" rel="stylesheet">
+
+  
+    {% endblock %}
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>{% block title %}{% endblock %}</title>
+  {% endblock %}
+</head>
+<div class="'wrapper">
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" >Heart Disease Predictor</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">About
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('demo1_app.predict_datapoint')}}">Predict</a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('demo1_app.datadict')}}">Data Dictionary</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('demo1_app.privacy')}}">Privacy Policy</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+
+{% block content %}
+<div class="container">
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}
+
+
+
+</body>
+
+
+<footer class="footer">
+  <a href="https://www.linkedin.com/in/shosowoolu/" target="_blank"><i class="fa fa-linkedin fa-2x" id="linkedin_icon"></i></a>
+  <a href="https:/x.com/soyinka_lcc3" target="_blank"><i class="fa fa-twitter fa-2x" id="twitter_icon"></i></a>
+  <a href="https://github.com/soyinkas1" target="_blank"><i class="fa fa-github fa-2x" id="github_icon"></i></a>
+
+  <!-- Copyright -->
+  <div class="second_footer" style="background-color: rgba(0, 0, 0, 0.05);">
+    ©2024 :
+    <a class="text-body" target="_blank" href="https://www.shosowoolu.com/">www.shosowoolu.com</a>
+  </div>
+</footer>
+
+</div>
+
+
+
+
+</html>

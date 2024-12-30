@@ -1,0 +1,61 @@
+{% extends "demo1_app_base.html" %}
+{% block title %}About - Heart Disease Prediction Web App{% endblock %}
+{% block content %}
+    {% block page_content %}
+  
+    <div class="container">
+        <header class="my-4">
+            <h1>About the Heart Disease Prediction Web App</h1>
+        </header>
+
+        <section>
+            <h2>Project Overview</h2>
+            <p>Welcome to the Heart Disease Prediction Web App, a powerful tool designed to help you assess the risk of heart disease based on a set of clinical parameters. This application leverages advanced machine learning models to provide accurate predictions and valuable insights into heart health.</p>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <ul>
+                <li><strong>Input Data:</strong> You can provide clinical parameters such as age, sex, chest pain type, resting blood pressure, cholesterol levels, fasting blood sugar, ECG results, and other relevant features.</li>
+                <li><strong>Prediction:</strong> Once you submit the data, the application uses a trained machine learning model to predict the likelihood of heart disease.</li>
+                <li><strong>Results:</strong> The prediction is displayed on the web page and also sent to the email address you provide. Additionally, all prediction data and results are stored in a cloud database for further analysis.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <ul>
+                <li><strong>User-Friendly Interface:</strong> Easily enter patient data using intuitive input forms.</li>
+                <li><strong>Email Notifications:</strong> Receive prediction results directly to your email.</li>
+                <li><strong>Cloud Storage:</strong> All data and results are securely stored in a cloud database.</li>
+                <li><strong>Scalable Deployment:</strong> The app is deployed on Azure, ensuring high availability, security  and reliability.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Technology Stack</h2>
+            <p>The application is built using:</p>
+            <ul>
+                <li><strong>Flask:</strong> A lightweight web framework to handle web requests and responses.</li>
+                <li><strong>Scikit-learn, XGBoost, LightGBM:</strong> Advanced machine learning libraries for model training and evaluation.</li>
+                <li><strong>Azure:</strong> Cloud platforms for deployment and secure data storage.</li>
+                <li><strong>Bootstrap and CSS:</strong> For a responsive and visually appealing user interface.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Future Enhancements</h2>
+            <p>The plan to further enhance this application by incorporating automated model training pipelines, integrating with model registries, and exploring additional advanced features. Stay tuned for updates!</p>
+        </section>
+
+        <section>
+            <h2>Contact Us</h2>
+            <p>Thank you for using the Heart Disease Prediction Web App. If you have any questions or feedback, please feel free to reach out.</p>
+        </section>
+    </div>
+ 
+      
+    {% endblock %}
+
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "demo1_app_base.html" %}
+
+{% block title %} HD Predictor-Data Dicttionary{% endblock %}
+
+{% block page_content %}
+
+<div class="'page-header">
+     <h1>Data Dictionary</h1>
+</div>
+<main>
+    <section>
+        <h2>. . . . . . . . . . . . . </h2>
+        <br>
+        <br>
+
+
+        <table class="table" border="7">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Feature</th>
+                    <th>Description</th>
+                    <th>Data Class</th>
+                    <th>Data Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Age</td>
+                    <td>The Age of patient in years</td>
+                    <td>numeric</td>
+                    <td>int</td>
+                </tr>
+                <tr>          
+                    <td>2</td>
+                    <td>Sex</td>
+                    <td>1-Male or 2-Female.</td>
+                    <td>categorical</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>cp</td>
+                    <td>Chest Pain Type</td>
+                    <td>categorical</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>tresbps</td>
+                    <td>Resting Blood Pressure (in mm Hg on admissions to the hospital).</td>
+                    <td>numeric</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>chol</td>
+                    <td>Serum Cholestoral in mg/dl.</td>
+                    <td>numeric</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>fbs</td>
+                    <td>Fasting Blood Sugar > 120mg (1-True, 0-False).</td>
+                    <td>categorical</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>restecg</td>
+                    <td>Resting electocadiographic (ECG)  results.</td>
+                    <td>numeric</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>oldpeak</td>
+                    <td>ST depression induced by exercise relative to rest</td>
+                    <td>numeric</td>
+                    <td>float</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>slope</td>
+                    <td>The slope of the peak exercise ST segment.</td>
+                    <td>numeric</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>ca</td>
+                    <td>Number of major vessels (0-3) coloured by flourosopy</td>
+                    <td>numeric</td>
+                    <td>int</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>thal</td>
+                    <td>Thalassemia (a type of anemia)</td>
+                    <td>numeric</td>
+                    <td>int</td>
+                </tr>
+                 <tr>
+                    <td>12</td>
+                    <td>Target</td>
+                    <td>(1) for has heart disease and (0) for do not have heart disease</td>
+                    <td>label</td>
+                    <td>int</td>
+                </tr>           
+            </tbody>
+        </table>
+      
+        
+    </section>
+    
+</main>
+
+
+{% endblock %}

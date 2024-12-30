@@ -1,0 +1,30 @@
+{% extends "demo1_app_base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %} HD Predictor- Results{% endblock %}
+
+{% block page_content %}
+
+<div class="'page-header">
+     <h1>Prediction Results</h1>
+</div>
+{{super()}}
+<main>
+    <section>
+        <h2>. . . . . . .</h2>
+        <p>Based on the data provided, the model predicts that the patient has likelihood of :
+            {% if predict == 1 %}
+                Heart Diesease - Positive 
+            {% else %}
+                No Heart Diesease - Negative
+            {% endif %}
+        </p> 
+        <br>
+        <br>
+        <p> The data used and result of this prediction has been saved to our database and also sent to the email provided.</p>
+    </section>
+    
+</main>
+
+
+{% endblock %}

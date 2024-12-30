@@ -1,0 +1,33 @@
+param_grid: 
+    params: {'Logistic Regression': 
+      {'penalty': ['12', 'l1'],
+      'dual': [False],
+      'solver': ['liblinear', 'saga']},
+      'SVM': {
+      'C': [0.1, 1, 10],
+      'kernel': ['linear',  'rbf'],
+      'degree': [3],
+      'gamma': ['scale']},
+      'Random Forest': {
+      'criterion': ['gini'],
+      'max_features': ['sqrt'],
+      'n_estimators': [50, 100],
+      'max_leaf_nodes': [None, 32 ],
+      'bootstrap': [True],
+      'n_jobs': [1],
+      'min_samples_split': [2, 10],
+      'min_samples_leaf': [1, 5]},
+      'XGB': {
+      'learning_rate': [0.05, 0.1],
+      'max_depth': [6, 8],
+      'gamma': [2, 4],
+      'sampling_method': ['uniform'],
+      'grow_policy': ['depthwise'],
+      'n_estimators': [50,100]},
+      'LightGBM': {
+      'boosting_type': ['gbdt'],
+      'max_depth': [-1, 2],
+      'learning_rate': [ 0.05, 0.1],
+      'n_estimator': [ 50, 100],
+      'num_leaves': [31, 50]}
+    } 

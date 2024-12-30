@@ -1,0 +1,59 @@
+artifacts_root: artifacts
+
+data_ingestion:
+    root_dir: artifacts/data_ingestion
+    n_rows: 10000
+    raw_data_path: app/data/heart-disease.csv
+    loaded_data_path: artifacts/data_ingestion/loaded_heart-disease.csv
+    chunk_size: 100000
+
+data_cleaning:
+    root_dir: artifacts/data_cleaning
+    loaded_data_path: artifacts/data_ingestion/loaded_heart-disease.csv
+    clean_data_path: artifacts/data_cleaning/clean_heart-disease.csv
+    chunk_size: 100000
+
+data_transformation:
+    root_dir: artifacts/data_transformation
+    clean_data_path: artifacts/data_cleaning/clean_heart-disease.csv
+    transformed_data_path: artifacts/data_transformation/transformed_heart-disease.csv
+    chunk_size: 100000
+    train_data_path: artifacts/data_transformation/train.csv
+    test_data_path: artifacts/data_transformation/test.csv
+    val_data_path: artifacts/data_transformation/val.csv
+    # y_test_data_path: artifacts/data_transformation/y_test.csv
+
+model_trainer:
+    root_dir: artifacts/model
+    best_model_path: artifacts/model/best_model.pkl
+    train_data_path: artifacts/data_transformation/train.csv
+    test_data_path: artifacts/data_transformation/test.csv
+    val_data_path: artifacts/data_transformation/val.csv
+    models:
+        Logistic Regression: sklearn.linear_model.LogisticRegression
+        SVM: sklearn.svm.SVC
+        Random Forest: sklearn.ensemble.RandomForestClassifier
+        XGB: xgboost.XGBClassifier
+        LightGBM: lightgbm.LGBMClassifier
+
+prediction_pipeline:
+    age: age
+    sex:  sex
+    cp: cp
+    trestbpscp: trestbpscp
+    chol: chol
+    fbs: fbs
+    restecg: restecg
+    thalach: thalach
+    exang: exang
+    oldpeak: oldpeak
+    slope: slope
+    ca: ca
+    thal: thal
+    model_path: artifacts/best_model.pkl
+    preprocessor_path: artifact/preprocessor.pkl
+
+webform:
+    sex: [1, 0]
+    fbs: [1, 0]
+    restecg: [1, 0]
