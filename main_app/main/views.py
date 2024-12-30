@@ -14,7 +14,6 @@ import sys
 
 load_dotenv()
 
-<<<<<<< HEAD:main_app/main/views.py
 FLATPAGES_AUTO_RELOAD = os.getenv("MAIN_FLATPAGES_AUTO_RELOAD")
 FLATPAGES_EXTENSION = os.getenv("MAIN_FLATPAGES_EXTENSION")
 FLATPAGES_ROOT = os.getenv("MAIN_FLATPAGES_ROOT")
@@ -26,20 +25,8 @@ TWITTER_URL = os.getenv("MAIN_TWITTER_URL")
 GITHUB_URL = os.getenv("MAIN_GITHUB_URL")
 MEDIUM_URL = os.getenv("MAIN_MEDIUM_URL")
 LINKEDIN_URL = os.getenv("MAIN_LINKEDIN_URL")
-=======
-FLATPAGES_AUTO_RELOAD = os.getenv("FLATPAGES_AUTO_RELOAD")
-FLATPAGES_EXTENSION = os.getenv("FLATPAGES_EXTENSION")
-FLATPAGES_ROOT = os.getenv("FLATPAGES_ROOT")
-DIR_PROJECTS = os.getenv("DIR_PROJECTS")
-DIR_BLOG_POSTS = os.getenv("DIR_BLOG_POSTS")
-DIR_TESTIMONIALS = os.getenv("DIR_TESTIMONIALS")
-DIR_TRAININGS = os.getenv("DIR_TRAININGS")
-TWITTER_URL = os.getenv("TWITTER_URL")
-GITHUB_URL = os.getenv("GITHUB_URL")
-MEDIUM_URL = os.getenv("MEDIUM_URL")
-LINKEDIN_URL = os.getenv("LINKEDIN_URL")
-MAIL_USERNAME = os.getenv("MAIL_USERNAME")
->>>>>>> main:app/main/views.py
+MAIL_USERNAME = os.getenv("MAIN_MAIL_USERNAME")
+
 
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
