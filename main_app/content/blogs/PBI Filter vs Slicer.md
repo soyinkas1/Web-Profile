@@ -1,6 +1,6 @@
 ---
 title: Maximizing Power BI Efficiency - Filters vs. Slicers 
-date: 2023-12-19
+date: 2024-01-05
 published: True
 shortDesc: Are you leveraging Power BI's filtering capabilities to their fullest potential? Filters and slicers are two powerhouse tools in a report designer's arsenal, each offering distinct advantages and considerations. Let's delve into their nuances to optimize your reporting experience.
 img: "\\static\\assets\\img\\miniblog\\PBI Filter vs Slicer.PNG"
