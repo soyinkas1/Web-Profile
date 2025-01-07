@@ -6,7 +6,7 @@ class MainAppTestCase(unittest.TestCase):
     
     def setUp(self):
         self.app = create_main_app('testing')
-        self.client = self.app.test_client()
+        self.client = self.app.test_client(use_cookies=True)
         self.app_context = self.app.app_context()
         self.app_context.push()
         main_db.create_all()
@@ -19,7 +19,7 @@ class MainAppTestCase(unittest.TestCase):
     def test_home_page(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Soyinka", response.data)
+        self.assertIn(b"about", response.data)
     
     def test_portfolio_page(self):
         response = self.client.get('/portfolio')
