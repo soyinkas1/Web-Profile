@@ -6,6 +6,10 @@ from main_app.db_models import ContactTable
 from main_app import db
 from datetime import datetime
 
+
+
+
+
 class CustomData:
     def __init__(self, 
         name: str,

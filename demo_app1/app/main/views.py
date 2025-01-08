@@ -23,7 +23,7 @@ def demo1_app_home():
 def predict_datapoint():
     form = WebForm()
     if form.validate_on_submit():
-        # Collect data imput from webform      
+        # Collect data input from webform      
         data = CustomData(
             email=form.email.data,
             age=form.age.data,
