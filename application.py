@@ -14,6 +14,7 @@
 from flask import Flask, render_template, url_for, request
 import os
 import sys
+import argparse
 from main_app import create_app as create_main_app, db as main_db, mail as main_mail
 from main_app.db_models import ContactTable as MainContactTable
 from demo_app1.app import create_app as create_demo1_app, db as demo1_db, mail as demo1_mail
@@ -95,5 +96,12 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 application= main_app
-if __name__ == '__main__':
-    main_app.run(debug=True)
+if __name__ == '__main__': 
+    # parser = argparse.ArgumentParser(description="Run the Flask application or tests.") 
+    # parser.add_argument('command', choices=['run', 'test'], help="Command to execute: 'run' to start the app, 'test' to run tests.") 
+    # args = parser.parse_args() 
+    # if args.command == 'test': 
+    #     test() 
+    # else: 
+     main_app.run(debug=True)
+    
