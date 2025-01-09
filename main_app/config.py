@@ -43,6 +43,8 @@ class TestingConfig(Config):
         'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
         SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv('MAIN_SQLALCHEMY_TRACK_MODIFICATIONS')
         WTF_CSRF_ENABLED = False
+        MAIL_SUPPRESS_SEND = True # Do not send emails during tests 
+        MAIL_DEBUG = int(os.getenv('MAIL_DEBUG', 0))
 class ProductionConfig(Config):
         DEBUG = False
         SQLALCHEMY_DATABASE_URI = os.environ.get('MAIN_DATABASE_URL') or \
