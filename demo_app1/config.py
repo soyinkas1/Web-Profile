@@ -35,6 +35,8 @@ class TestingConfig(Config):
         WTF_CSRF_ENABLED = False
         MAIL_SUPPRESS_SEND = True # Do not send emails during tests 
         MAIL_DEBUG = int(os.getenv('MAIL_DEBUG', 0))
+        FLATPAGES_EXTENSION = '.md' 
+        FLATPAGES_ROOT = os.path.join(basedir, 'content')
 class ProductionConfig(Config):
         SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'demo_app1-test.sqlite')
