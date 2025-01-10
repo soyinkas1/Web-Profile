@@ -22,7 +22,7 @@ class Config:
         FLATPAGES_EXTENSION = os.getenv('MAIN_FLATPAGES_EXTENSION')
         FLATPAGES_ROOT = os.getenv('MAIN_FLATPAGES_ROOT')
         DIR_BLOG_POSTS = os.getenv('MAIN_DIR_BLOG_POSTS')
-        DIR_PROJECTS = 'projects'
+        DIR_PROJECTS = os.getenv('MAIN_DIR_PROJECTS')
         DIR_TESTIMONIALS = os.getenv('MAIN_DIR_TESTIMONIALS')
         DIR_TRAININGS = os.getenv('MAIN_DIR_TRAININGS')
         
@@ -47,7 +47,7 @@ class TestingConfig(Config):
         MAIL_DEBUG = int(os.getenv('MAIL_DEBUG', 0))
         FLATPAGES_EXTENSION = '.md' 
         FLATPAGES_ROOT = os.path.join(basedir, 'content')
-        DIR_PROJECTS = 'projects'
+        
 class ProductionConfig(Config):
         DEBUG = False
         SQLALCHEMY_DATABASE_URI = os.environ.get('MAIN_DATABASE_URL') or \

@@ -27,7 +27,11 @@ MEDIUM_URL = os.getenv("MAIN_MEDIUM_URL")
 LINKEDIN_URL = os.getenv("MAIN_LINKEDIN_URL")
 MAIL_USERNAME = os.getenv("MAIN_MAIL_USERNAME")
 
-
+print(FLATPAGES_ROOT)
+print(FLATPAGES_EXTENSION)
+print(DIR_PROJECTS)
+print(DIR_BLOG_POSTS)
+print(DIR_TESTIMONIALS)
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
 def index():
