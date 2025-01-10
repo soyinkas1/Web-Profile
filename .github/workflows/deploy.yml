@@ -23,7 +23,43 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Print environment variables 
+        run: | 
+          echo "GITHUB_URL=${{ secrets.MAIN_GITHUB_URL }}" 
+          echo "MEDIUM_URL=${{ secrets.MAIN_MEDIUM_URL }}" 
+          echo "LINKEDIN_URL=${{ secrets.MAIN_LINKEDIN_URL }}" 
+          echo "TWITTER_URL=${{ secrets.MAIN_TWITTER_URL }}" 
+          echo "SECRET_KEY=${{ secrets.MAIN_SECRET_KEY }}" 
+          echo "SQLALCHEMY_TRACK_MODIFICATIONS=${{ secrets.MAIN_SQLALCHEMY_TRACK_MODIFICATIONS }}" 
+          echo "FLASK_CONFIG=${{ secrets.MAIN_FLASK_CONFIG }}" 
+          echo "FLATPAGES_AUTO_RELOAD=${{ secrets.MAIN_FLATPAGES_AUTO_RELOAD }}" 
+          echo "FLATPAGES_EXTENSION=${{ secrets.MAIN_FLATPAGES_EXTENSION }}" 
+          echo "FLATPAGES_ROOT=${{ secrets.MAIN_FLATPAGES_ROOT }}" 
+          echo "DIR_BLOG_POSTS=${{ secrets.MAIN_DIR_BLOG_POSTS }}" 
+          echo "DIR_PROJECTS=${{ secrets.MAIN_DIR_PROJECTS }}" 
+          echo "DIR_TESTIMONIALS=${{ secrets.MAIN_DIR_TESTIMONIALS }}" 
+          echo "DIR_TRAININGS=${{ secrets.MAIN_DIR_TRAININGS }}" 
+          echo "FLASK_CONFIG=${{ secrets.MAIN_FLASK_CONFIG }}" 
+          echo "FLATPAGES_AUTO_RELOAD=${{ secrets.MAIN_FLATPAGES_AUTO_RELOAD }}" 
+
       - name: Run tests 
+        env: 
+          GITHUB_URL : ${{ secrets.MAIN_GITHUB_URL }} 
+          MEDIUM_URL : ${{ secrets.MAIN_MEDIUM_URL }}
+          LINKEDIN_URL : ${{ secrets.MAIN_LINKEDIN_URL }} 
+          TWITTER_URL : ${{ secrets.MAIN_TWITTER_URL }} 
+          SECRET_KEY : ${{ secrets.MAIN_SECRET_KEY }}
+          SQLALCHEMY_TRACK_MODIFICATIONS : ${{ secrets.MAIN_SQLALCHEMY_TRACK_MODIFICATIONS }}
+          FLASK_CONFIG : ${{ secrets.MAIN_FLASK_CONFIG }}
+          FLATPAGES_AUTO_RELOAD : ${{ secrets.MAIN_FLATPAGES_AUTO_RELOAD }} 
+          FLATPAGES_EXTENSION : ${{ secrets.MAIN_FLATPAGES_EXTENSION }}
+          FLATPAGES_ROOT : ${{ secrets.MAIN_FLATPAGES_ROOT }}
+          DIR_BLOG_POSTS : ${{ secrets.MAIN_DIR_BLOG_POSTS }}
+          DIR_PROJECTS : ${{ secrets.MAIN_DIR_PROJECTS }} 
+          DIR_TESTIMONIALS : ${{ secrets.MAIN_DIR_TESTIMONIALS }}
+          DIR_TRAININGS : ${{ secrets.MAIN_DIR_TRAININGS }} 
+         
+          
         run: | 
           python -m unittest discover
 
