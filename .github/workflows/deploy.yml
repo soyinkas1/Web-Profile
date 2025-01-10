@@ -37,6 +37,7 @@ jobs:
           echo "FLATPAGES_ROOT=${{ secrets.MAIN_FLATPAGES_ROOT }}" 
           echo "DIR_BLOG_POSTS=${{ secrets.MAIN_DIR_BLOG_POSTS }}" 
           echo "::add-mask::false"  # Disable masking (use with caution)
+          echo "${{ secrets.MAIN_DIR_PROJECTS }}" > dir_projects.txt
           echo "DIR_PROJECTS=${{ secrets.MAIN_DIR_PROJECTS }}" 
           echo "DIR_TESTIMONIALS=${{ secrets.MAIN_DIR_TESTIMONIALS }}" 
           echo "DIR_TRAININGS=${{ secrets.MAIN_DIR_TRAININGS }}" 
