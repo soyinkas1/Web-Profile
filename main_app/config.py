@@ -22,7 +22,7 @@ class Config:
         FLATPAGES_EXTENSION = os.getenv('MAIN_FLATPAGES_EXTENSION')
         FLATPAGES_ROOT = os.getenv('MAIN_FLATPAGES_ROOT')
         DIR_BLOG_POSTS = os.getenv('MAIN_DIR_BLOG_POSTS')
-        DIR_PROJECTS = os.getenv('MAIN_DIR_PROJECTS')
+        DIR_PROJECTS = 'projects'
         DIR_TESTIMONIALS = os.getenv('MAIN_DIR_TESTIMONIALS')
         DIR_TRAININGS = os.getenv('MAIN_DIR_TRAININGS')
         
