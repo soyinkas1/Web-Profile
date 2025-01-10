@@ -22,7 +22,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
+
 
       - name: Print environment variables 
         run: | 
@@ -40,8 +40,7 @@ jobs:
           echo "DIR_PROJECTS=${{ secrets.MAIN_DIR_PROJECTS }}" 
           echo "DIR_TESTIMONIALS=${{ secrets.MAIN_DIR_TESTIMONIALS }}" 
           echo "DIR_TRAININGS=${{ secrets.MAIN_DIR_TRAININGS }}" 
-          echo "FLASK_CONFIG=${{ secrets.MAIN_FLASK_CONFIG }}" 
-          echo "FLATPAGES_AUTO_RELOAD=${{ secrets.MAIN_FLATPAGES_AUTO_RELOAD }}" 
+     
          
 
       - name: Run tests 
