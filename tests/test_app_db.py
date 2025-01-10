@@ -6,10 +6,13 @@ from demo_app1.app import create_app as create_demo1_app, db as demo1_db, mail a
 from demo_app1.app.db_models import HeartPredictions as Demo1Table
 from demo_app1.app.main import demo1_app
 from datetime import datetime
+import os
 
 class MainAppTestCase(unittest.TestCase):
     
     def setUp(self):
+        self.dir_projects = os.getenv('DIR_PROJECTS') 
+        self.assertIsNotNone(self.dir_projects, "DIR_PROJECTS is not set or is None")
         # Create the main app and demo app
         self.app = create_main_app('testing')
         self.demo_app = create_demo1_app('testing')
