@@ -56,8 +56,8 @@ jobs:
           FLATPAGES_AUTO_RELOAD : ${{ secrets.MAIN_FLATPAGES_AUTO_RELOAD }} 
           FLATPAGES_EXTENSION : ${{ secrets.MAIN_FLATPAGES_EXTENSION }}
           FLATPAGES_ROOT : ${{ secrets.MAIN_FLATPAGES_ROOT }}
-          DIR_BLOG_POSTS : ${{ secrets.MAIN_DIR_BLOG_POSTS }}
-          DIR_PROJECTS : ${{ secrets.MAIN_DIR_PROJECTS }} 
+          DIR_BLOG_POSTS : "${{ secrets.MAIN_DIR_BLOG_POSTS }}"
+          DIR_PROJECTS :  "projects"
           DIR_TESTIMONIALS : ${{ secrets.MAIN_DIR_TESTIMONIALS }}
           DIR_TRAININGS : ${{ secrets.MAIN_DIR_TRAININGS }} 
          
