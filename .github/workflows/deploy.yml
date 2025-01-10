@@ -41,6 +41,8 @@ jobs:
           echo "DIR_TRAININGS=${{ secrets.MAIN_DIR_TRAININGS }}" 
           echo "FLASK_CONFIG=${{ secrets.MAIN_FLASK_CONFIG }}" 
           echo "FLATPAGES_AUTO_RELOAD=${{ secrets.MAIN_FLATPAGES_AUTO_RELOAD }}" 
+          echo "DIR_PROJECTS is set: ${DIR_PROJECTS:+Yes}"
+          echo "FLATPAGES_ROOT is set: ${FLATPAGES_ROOT:+Yes}"
 
       - name: Run tests 
         env: 
