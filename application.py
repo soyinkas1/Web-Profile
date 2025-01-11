@@ -25,6 +25,8 @@ from main_app.main.exception import CustomException
 from main_app.main.logging import logging
 from demo_app1.app.main import demo1_app
 
+from demo_app2_dash.finance import init_dashboard
+
 # Load environment variables for both apps
 load_dotenv(dotenv_path='main_app/.env')   
 load_dotenv(dotenv_path='demo_app1_app/app/.env')  
@@ -35,6 +37,9 @@ demo_app = create_demo1_app(os.getenv('DEMO1_FLASK_CONFIG') or 'default')
 
 # Register the demo app as a Blueprint within the main app
 main_app.register_blueprint(demo1_app, url_prefix='/demo1')
+
+# Register the dash app
+main_app = init_dashboard(main_app)
 
 app = main_app  # Set the main app as the primary application
 
