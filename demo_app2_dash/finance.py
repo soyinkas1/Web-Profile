@@ -14,7 +14,7 @@ from alpha_vantage.timeseries import TimeSeries
 dff = pd.read_csv("https://raw.githubusercontent.com/Coding-with-Adam/Dash-by-Plotly/master/Analytic_Web_Apps/Financial/data.csv")
 dff = dff[dff.indicator.isin(['high'])]
 
-def init_dashboard(server):
+def init_fin_dashboard(server):
     """Create a Plotly Dash dashboard."""
     dash_app = dash.Dash(
         server=server,
