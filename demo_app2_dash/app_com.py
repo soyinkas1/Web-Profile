@@ -8,14 +8,14 @@ import plotly.express as px
 from alpha_vantage.commodities import Commodities
 import dash_bootstrap_components as dbc
 import os
-from commodity_etl import CommodityData
+from .commodity_etl import CommodityData
 
 bootstrap_css_path = os.path.join('static', 'vendor', 'bootstrap','css', 'bootstrap.min.css')
 
-def init_fin_dashboard(server):
+def init_com_dashboard(server):
     """Create a Plotly Dash dashboard."""
     dash_app1 = Dash(server=server , 
-           routes_pathname_prefix='dashapp1',
+           routes_pathname_prefix='/dashapp1/',
            external_stylesheets=[bootstrap_css_path, 'static\\vendor\\main.css', 'static\\vendor\\aos\\aos.css'],
            meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}])
 
@@ -45,20 +45,31 @@ def init_fin_dashboard(server):
                                             dcc.Slider( id='prediction_slider', min=1, max=10, step=1, value=5, 
                                                     marks={i: str(i) for i in range(1, 11)}, 
                                                     tooltip={'always_visible': True, 'placement': 'bottom'} )
-                                                ]),
+                                                ],style={ 'borderRadius': '10px', 
+                                                         'border': '1px solid #ccc', 
+                                                          'padding': '10px', 
+                                                          'marginBottom': '20px',
+                                                           'backgroundColor': '#f9f9f9'  }),
 
                                         # Time series Trend Graph section
                                         html.Div([
+                                            html.P("Select Date Range", style={'padding': '10px', 'fontWeight': 'bold'}),
                                             dcc.DatePickerRange( id='date-picker-range', 
                                                                 start_date='2024-01-01', 
                                                                 end_date='2025-01-01' ),
                                             html.H4(children='Price Trend', style={'padding': '20px'}),
                                             
                                             
-                                            dcc.Graph(id='trend_graph', figure={}),
+                                            dcc.Graph(id='trend_graph', figure={},style={ 'borderRadius': '10px', 
+                                                          'backgroundColor': '#f9f9f9', 
+                                                           'marginBottom': '20px'  }),
                                                 
                                                 
-                                                ]),
+                                                ], style={ 'borderRadius': '10px', 
+                                                         'border': '1px solid #ccc', 
+                                                          'padding': '10px', 
+                                                           'backgroundColor': '#f9f9f9', 
+                                                           'marginBottom': '20px'  }),
 
 
 

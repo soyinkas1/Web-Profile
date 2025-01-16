@@ -3,7 +3,7 @@ from datetime import datetime
 import requests
 import pandas as pd
 from alpha_vantage.commodities import Commodities
-from config import Configuration
+from .config import Configuration
 import os
 import numpy as np
 
@@ -25,6 +25,7 @@ class CommodityData:
         self.cd = Commodities(self.api_key)
 
         base_dir = os.path.abspath(os.path.dirname(__file__))
+        print(base_dir)
         self.data_dir = os.path.join(base_dir, 'data')
 
 
@@ -74,7 +75,7 @@ class CommodityData:
                     wti_df = wti_df.bfill()
 
                     # Load the full file to csv 
-                    wti_df.to_csv(f'data/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
+                    wti_df.to_csv(f'{self.data_dir}/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
 
                     # Filter for the start date and end date
                     wti_df = wti_df[(wti_df.index >= start_date) & (wti_df.index <= end_date)]
@@ -86,7 +87,7 @@ class CommodityData:
                 return wti_df    
                     
             else:
-                wti_df = pd.read_csv(f'data/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
+                wti_df = pd.read_csv(f'{self.data_dir}/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
                 
                 # Transform to time-series df
                 wti_df.set_index('date', drop=True, inplace=True)
@@ -130,7 +131,7 @@ class CommodityData:
                     brent_df = brent_df.bfill()
 
                     # Load the full file to csv 
-                    brent_df.to_csv(f'data/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
+                    brent_df.to_csv(f'{self.data_dir}/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
 
                     # Filter for the start date and end date
                     brent_df = brent_df[(brent_df.index >= start_date) & (brent_df.index <= end_date)]
@@ -142,7 +143,7 @@ class CommodityData:
                 return brent_df    
                     
             else:
-                brent_df = pd.read_csv(f'data/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
+                brent_df = pd.read_csv(f'{self.data_dir}/{commodity}/{str(end_date.strftime('%Y-%m-%d') +'.csv')}')
                 
                 # Transform to time-series df
                 brent_df.set_index('date', drop=True, inplace=True)
