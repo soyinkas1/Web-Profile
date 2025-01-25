@@ -2,6 +2,7 @@ from dash import Dash, dcc, html, Output, Input
 
 from dash.html import Center
 import plotly.express as px
+import plotly.graph_objects as go
 from alpha_vantage.timeseries import TimeSeries
 from dash import dcc, html, Output, Input, dash_table
 import plotly.express as px
@@ -106,7 +107,12 @@ def init_callbacks(dash_app1):
                         legend_title_text='Legend', 
                         xaxis_title='Date', 
                         yaxis_title='Price', 
-                        showlegend=True)
+                        showlegend=True,
+                       xaxis=dict(
+        rangeslider=dict(
+            visible=True
+        )
+    ))
         return fig
 
 
