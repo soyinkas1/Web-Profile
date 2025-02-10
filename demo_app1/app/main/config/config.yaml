@@ -25,7 +25,7 @@ data_transformation:
 
 model_trainer:
     root_dir: artifacts/model
-    best_model_path: artifacts/model/best_model.pkl
+    best_model_path: demo_app1/artifacts/model/best_model.pkl
     train_data_path: artifacts/data_transformation/train.csv
     test_data_path: artifacts/data_transformation/test.csv
     val_data_path: artifacts/data_transformation/val.csv
@@ -50,7 +50,7 @@ prediction_pipeline:
     slope: slope
     ca: ca
     thal: thal
-    model_path: artifacts/best_model.pkl
+    model_path: demo_app1/artifacts/model/best_model.pkl
     preprocessor_path: artifact/preprocessor.pkl
 
 webform:
