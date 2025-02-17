@@ -626,6 +626,17 @@
 
   <!-- Main JS File -->
   <script src="static/assets/js/main.js"></script>
+  
+  <!-- Custom JavaScript to auto-dismiss flash message -->
+  <script>
+    setTimeout(function() {
+        var flashMessage = document.getElementById('flash-message');
+        if (flashMessage) {
+            flashMessage.classList.remove('show');
+            flashMessage.classList.add('fade');
+        }
+    }, 5000); // 5000 milliseconds = 5 seconds
+</script>
 
 </body>
 

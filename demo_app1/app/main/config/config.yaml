@@ -50,7 +50,7 @@ prediction_pipeline:
     slope: slope
     ca: ca
     thal: thal
-    model_path: demo_app1/artifacts/model/best_model.pkl
+    model_path: demo_app1/artifacts/best_model.pkl
     preprocessor_path: artifact/preprocessor.pkl
 
 webform:
