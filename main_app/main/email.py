@@ -7,8 +7,8 @@ import os
 
 load_dotenv()
 
-MAIL_SUBJECT_PREFIX = os.getenv('MAIL_SUBJECT_PREFIX')
-MAIL_SENDER = os.getenv('MAIL_USERNAME')
+MAIL_SUBJECT_PREFIX = os.getenv('MAIN_MAIL_SUBJECT_PREFIX')
+MAIL_SENDER = os.getenv('MAIN_MAIL_USERNAME')
 
 
 def send_async_email(app, msg):

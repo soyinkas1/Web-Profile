@@ -277,7 +277,15 @@
         <h2>Contact</h2>
         <p>Whether you are curious about my profile, need expert advice, or want to discuss potential opportunities, I'm eager to connect...</p>
       </div><!-- End Section Title -->
-
+      
+      <div class="container"><!-- FLASH MESSAGE  -->
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="flash-message">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+        </div>
+        {% endfor %}<!--END FLASH MESSAGE -->
+      
       <div class="container" data-aos="fade" data-aos-delay="100">
 
         <div class="row gy-4">
