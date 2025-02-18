@@ -3,6 +3,6 @@ from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 
 # Initialize extensions
-db = SQLAlchemy()
+db2 = SQLAlchemy()
 mail = Mail()
 bootstrap = Bootstrap()

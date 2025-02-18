@@ -4,7 +4,7 @@ from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from demo_app1.config import config
 from .main import demo1_app
-from .extensions import db, mail, bootstrap
+from .extensions import db2, mail, bootstrap
 # Create instances of the Flask extensions
 # bootstrap = Bootstrap()
 # mail = Mail()
@@ -20,8 +20,8 @@ def create_app(config_name):
     bootstrap.init_app(app)
     mail.init_app(app)
     
-    db.init_app(app)
-    app.register_blueprint(demo1_app, url_prefix='/demo1')
+    db2.init_app(app)
+    # app.register_blueprint(demo1_app, url_prefix='/demo1')
 
     return app
 
