@@ -2,7 +2,7 @@ from email import message
 import unittest
 from main_app import create_app as create_main_app, db as main_db, mail as main_mail
 from main_app.db_models import ContactTable 
-from demo_app1.app import create_app as create_demo1_app, db as demo1_db, mail as demo1_mail
+from demo_app1.app import create_app as create_demo1_app, db2 as demo1_db, mail as demo1_mail
 from demo_app1.app.db_models import HeartPredictions as Demo1Table
 from demo_app1.app.main import demo1_app
 from datetime import datetime
