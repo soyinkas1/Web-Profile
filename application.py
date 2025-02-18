@@ -18,7 +18,7 @@ import argparse
 from main_app import create_app as create_main_app, db as main_db, mail as main_mail
 from main_app.db_models import ContactTable as MainContactTable
 from demo_app1.app import create_app as create_demo1_app
-from demo_app1.app.extensions import db as demo1_db, mail as demo1_mail
+from demo_app1.app.extensions import db2 as demo1_db, mail as demo1_mail
 from demo_app1.app.db_models import HeartPredictions as Demo1Table
 from flask_migrate import Migrate, init as flask_migrate_init, migrate as flask_migrate_migrate, upgrade as flask_migrate_upgrade
 from dotenv import load_dotenv
@@ -83,6 +83,7 @@ def initialize_and_migrate(app, db, migrate, migrations_subfolder):
             except Exception as e:
                 raise CustomException(e, sys)
         try:
+            migrate.directory = migrations_subfolder
             flask_migrate_migrate(directory=migrations_subfolder, message="Initial migration.")
             flask_migrate_upgrade(directory=migrations_subfolder)
             logging.info(f'Database upgraded successfully for {app.name}.')

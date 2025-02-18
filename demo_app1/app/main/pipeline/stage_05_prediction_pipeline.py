@@ -6,7 +6,10 @@ from demo_app1.app.main.config.configuration import ConfigurationManager
 from demo_app1.app.main.config.config_entity import PredictionPipelineConfig
 from demo_app1.app.main.logging import logging
 from demo_app1.app.db_models import HeartPredictions
-from demo_app1.app.extensions import db
+from demo_app1.app.extensions import db2
+from demo_app1.app.main import demo1_app
+from flask import current_app
+
 
 
 
@@ -136,14 +139,18 @@ class CustomData:
         except Exception as e:
             raise CustomException(e, sys)
     
-    def add_to_database(self, df):
+    def add_to_database(self, df, app):
         try:
+            
             # Convert DataFrame to list of dictionaries
             data_dicts = df.to_dict(orient='records')
 
-            # Bulk insert using SQLAlchemy
-            db.session.bulk_insert_mappings(HeartPredictions, data_dicts)
-            db.session.commit()
+      
+            with app.app_context():
+                # Bulk insert using SQLAlchemy
+                db2.session.bulk_insert_mappings(HeartPredictions, data_dicts)
+                db2.session.commit()
         except Exception as e:
+            db2.session.rollback()
             raise CustomException(e, sys)
-            db.session.rollback()
+            

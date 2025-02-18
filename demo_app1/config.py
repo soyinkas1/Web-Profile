@@ -12,6 +12,7 @@ class Config:
         MAIL_USE_TLS = os.getenv('DEMO1_MAIL_USE_TLS')
         MAIL_USERNAME = os.getenv('DEMO1_MAIL_USERNAME')
         MAIL_PASSWORD = os.getenv('DEMO1_MAIL_PASSWORD')
+        MAIL_SUBJECT_PREFIX = os.getenv('DEMO1_MAIL_SUBJECT_PREFIX')
         DEV_DATABASE_URL = os.getenv('DEMO1_DEV_DATABASE_URL')
         DATABASE_URL = os.getenv('DEMO1_DATABASE_URL')
         

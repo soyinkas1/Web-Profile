@@ -7,6 +7,7 @@ from demo_app1.app.main.pipeline.stage_05_prediction_pipeline import CustomData,
 from demo_app1.app.main.config.configuration import ConfigurationManager
 from .. import email
 from .logging import logging
+from flask import current_app
 
 
 config = ConfigurationManager()
@@ -53,7 +54,8 @@ def predict_datapoint():
         # Update the results to database
         database_df = data.get_data_for_database()
         database_df['target'] = predict
-        data.add_to_database(database_df)
+        from application import demo_app
+        data.add_to_database(database_df, demo_app)
 
         logging.info('Database updated')
         # Email results 
