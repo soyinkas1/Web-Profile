@@ -3,7 +3,7 @@ from datetime import datetime
 import requests
 import pandas as pd
 from alpha_vantage.commodities import Commodities
-from .config import Configuration
+from demo_app2_dash.config import Configuration
 import os
 import numpy as np
 
