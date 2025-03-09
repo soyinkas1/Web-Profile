@@ -246,8 +246,13 @@
         <a href="{{ url_for('demo1_app.demo1_app_home') }}" class="demo-btn">View App</a> </div> 
         
         <div class="demo-card"> 
+<<<<<<< HEAD
           <h3>Interactive Dashboard App for Crude Oil Prices</h3> 
           <p>Embdedded Plotly Dash built dashboard for analysing and forecasting prices of Crude Oil (WTI & Brent).</p> 
+=======
+          <h3>Interactive Dashboard App for Commodity Prices</h3> 
+          <p>Embdedded Plotly Dash built dashboard for analysing and forecasting prices of Commodities (Crude Oil-WTI & Brent, Natural Gas, Wheat, Corn, Coffee) (work in progress)</p> 
+>>>>>>> main
           <a href="/dashapp1/" class="demo-btn">View App</a> </div>   
 
           <!-- <div class="demo-card"> 
@@ -277,7 +282,15 @@
         <h2>Contact</h2>
         <p>Whether you are curious about my profile, need expert advice, or want to discuss potential opportunities, I'm eager to connect...</p>
       </div><!-- End Section Title -->
-
+      
+      <div class="container"><!-- FLASH MESSAGE  -->
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="flash-message">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+        </div>
+        {% endfor %}<!--END FLASH MESSAGE -->
+      
       <div class="container" data-aos="fade" data-aos-delay="100">
 
         <div class="row gy-4">

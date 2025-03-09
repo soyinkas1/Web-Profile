@@ -55,6 +55,8 @@
 
   </header>
 
+
+{% block page_content %}
   <main class="main">
 
     <!-- Hero Section -->
@@ -582,7 +584,7 @@
     </section><!-- /Contact Section -->
 
   </main>
-
+  {% endblock %}
   <footer id="footer" class="footer position-relative light-background">
     <div class="container">
       <h3 class="sitename">Soyinka M Sowoolu</h3>
@@ -596,7 +598,7 @@
       </div>
       <div class="container">
         <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Soyinka Sowoolu 2024</strong> <span>All Rights Reserved</span>
+          <span>Copyright</span> <strong class="px-1 sitename">Soyinka Sowoolu 2025</strong> <span>All Rights Reserved</span>
         </div>
 
       </div>
@@ -624,6 +626,17 @@
 
   <!-- Main JS File -->
   <script src="static/assets/js/main.js"></script>
+  
+  <!-- Custom JavaScript to auto-dismiss flash message -->
+  <script>
+    setTimeout(function() {
+        var flashMessage = document.getElementById('flash-message');
+        if (flashMessage) {
+            flashMessage.classList.remove('show');
+            flashMessage.classList.add('fade');
+        }
+    }, 5000); // 5000 milliseconds = 5 seconds
+</script>
 
 </body>
 

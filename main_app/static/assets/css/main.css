@@ -955,6 +955,10 @@ section,
   padding: 15px 0;
   background-color: white; 
 }
+.isotope-container {
+  overflow: visible;
+  padding-bottom: 200px; /* add extra space if needed */
+}
 
 /* Styling for the button in the footer */
 .isotope-footer .button {

@@ -1,6 +1,11 @@
 from dash import Dash
 from dash.html import Center
 import plotly.express as px
+<<<<<<< HEAD
+=======
+import plotly.graph_objects as go
+from alpha_vantage.timeseries import TimeSeries
+>>>>>>> main
 from dash import dcc, html, Output, Input, dash_table
 import plotly.express as px
 import dash_bootstrap_components as dbc
