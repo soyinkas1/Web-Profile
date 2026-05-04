@@ -1,16 +1,14 @@
-from flask import render_template, session, redirect, url_for, current_app, flash
+import time
+from flask import render_template, redirect, url_for, flash, request
+
 from . import main_blueprint
 from .forms import WebForm
-from .. import db
-from main_app.db_models import ContactTable
 from .data import CustomData
-from .exception import CustomException
 from . import email
 from .logging import logging
-from main_app import flatpages
+from main_app import flatpages, limiter
 from dotenv import load_dotenv
 import os
-import sys
 
 load_dotenv()
 
@@ -28,135 +26,180 @@ LINKEDIN_URL = os.getenv("MAIN_LINKEDIN_URL")
 MAIL_USERNAME = os.getenv("MAIN_MAIL_USERNAME")
 
 
-@main_blueprint.route('/', methods=['GET', 'POST'])
+def _real_client_ip():
+    """Return the visitor's real IP, trusting PA's proxy headers."""
+    return (
+        request.headers.get("X-Real-IP")
+        or request.headers.get("X-Forwarded-For", request.remote_addr or "0.0.0.0")
+                  .split(",")[0]
+                  .strip()
+    )
+
+
+@main_blueprint.route("/", methods=["GET", "POST"])
+@limiter.limit(
+    "3 per hour; 10 per day",
+    methods=["POST"],
+    key_func=_real_client_ip,
+    error_message="Too many submissions. Please try again later.",
+)
 def index():
     
-    # Get the projects 
     projects = [p for p in flatpages if p.path.startswith(DIR_PROJECTS)]
+    latest_projects = sorted(
+        projects, reverse=True, key=lambda p: getattr(p, "meta").get("date")
+    )
 
-    
-    # Sort the filtered projects by date
-    latest_projects = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
-
-    # Get the posts
     posts = [p for p in flatpages if p.path.startswith(DIR_BLOG_POSTS)]
-    
-    # Filter for posts for publish
-    filtered_posts = []
-    for post in posts:
-        published_status = getattr(post, "meta").get('published')
-        # print(f"Check2 - Published status for {post.path}: {published_status}")
-        if published_status == True:
-            filtered_posts.append(post)
+    filtered_posts = [
+        p for p in posts if getattr(p, "meta").get("published") is True
+    ]
+    latest_posts = sorted(
+        filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get("date")
+    )
 
-    # Sort the filtered posts by date
-    latest_posts = sorted(filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
-    
-     # Get the trainings
     trainings = [t for t in flatpages if t.path.startswith(DIR_TRAININGS)]
-    
-    # Sort the filtered projects by date
-    latest_trainings = sorted(trainings, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+    latest_trainings = sorted(
+        trainings, reverse=True, key=lambda p: getattr(p, "meta").get("date")
+    )
 
-    # Get the testimonials
     testimonials = [t for t in flatpages if t.path.startswith(DIR_TESTIMONIALS)]
-    
-    # Sort the filtered projects by date
-    latest_testimonials = sorted(testimonials, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
-    
-    logging.info('test')
-    # Contact form data collection
-    try:
-        form = WebForm()
-        if form.validate_on_submit():
-            # Collect data input from webform      
+    latest_testimonials = sorted(
+        testimonials, reverse=True, key=lambda p: getattr(p, "meta").get("date")
+    )
+
+    logging.info("index page hit, method=%s ip=%s", request.method, _real_client_ip())
+
+    # --- Contact form ---
+    form = WebForm()
+
+    # On GET, stamp the render time so the form's timing validator can
+    # check how long the user took to fill it in.
+    if request.method == "GET":
+        form.form_loaded_at.data = str(time.time())
+
+    if form.validate_on_submit():
+        # Validation has already passed: honeypots empty, timing within
+        # bounds, no header injection, no gibberish, valid email domain.
+        # The narrow try/except below covers ONLY real I/O (DB + mail).
+        try:
             data = CustomData(
                 name=form.name.data,
                 email=form.email.data,
                 subject=form.subject.data,
                 message=form.message.data,
-                
+            )
+            data_df = data.get_data_as_data_frame()
+            data.add_to_database(data_df)
+            logging.info("Contact stored from ip=%s", _real_client_ip())
+
+            email.send_contact_notification(
+                sender_name=form.name.data,
+                sender_email=form.email.data,
+                subject=form.subject.data,
+                message_body=form.message.data,
             )
 
-            # Create DataFrame for prediction 
-            data_df=data.get_data_as_data_frame()
-            
-    
-            # Update the data to database
-            
-            data.add_to_database(data_df)
+            flash("Message sent", "success")
+            return redirect(url_for("main.index", _anchor="contact"))
 
-            logging.info('Database updated')
-            # Email results 
-            email.send_email([MAIL_USERNAME, data_df['email'].iloc[0]], data_df['subject'].iloc[0],
-    'mail', message=data_df['message'].iloc[0], name=data_df['name'].iloc[0])
-            confirm = 'Message sent'
-            flash(confirm, 'success')
+        except Exception:
+            # Real failure (DB error, mail server down, etc.).
+            # Log full traceback, show generic message — never leak
+            # internals to the requester.
+            logging.exception("Contact form processing failed")
+            flash("Something went wrong. Please try again later.", "error")
+            return redirect(url_for("main.index", _anchor="contact"))
 
-            return redirect(url_for('main.index', _anchor='contact'))
+    # POST that failed validation: log what was rejected so we can
+    # tune the filters by watching the logs.
+    if request.method == "POST" and form.errors:
+        logging.warning(
+            "Contact form rejected ip=%s errors=%s",
+            _real_client_ip(),
+            form.errors,
+        )
 
-            # Render the template with the sorted projects and posts 
-            # return render_template('index.html', twitter_url=TWITTER_URL, 
-            #                         github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL,
-            #                         projects=latest_projects, posts=latest_posts, testimonials=latest_testimonials, form=form, confirm=confirm)
-    except Exception as e:
-            raise CustomException(sys, e)
-    
-    return render_template('index.html', twitter_url=TWITTER_URL, 
-                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL,
-                                        projects=latest_projects, posts=latest_posts, trainings=latest_trainings, testimonials=latest_testimonials, form=form)
+    return render_template(
+        "index.html",
+        twitter_url=TWITTER_URL,
+        github_url=GITHUB_URL,
+        medium_url=MEDIUM_URL,
+        linkedin_url=LINKEDIN_URL,
+        projects=latest_projects,
+        posts=latest_posts,
+        trainings=latest_trainings,
+        testimonials=latest_testimonials,
+        form=form,
+    )
 
-    
-        
-      
-@main_blueprint.route('/post/<name>/')
+
+@main_blueprint.errorhandler(429)
+def ratelimit_handler(e):
+    """Friendly UX for rate-limited submissions instead of a hard 429 page."""
+    flash(
+        "Too many submissions from your network. Please try again in an hour.",
+        "error",
+    )
+    return redirect(url_for("main.index", _anchor="contact"))
+
+
+@main_blueprint.route("/post/<name>/")
 def post(name):
-    path = '{}/{}'.format(DIR_BLOG_POSTS, name)
+    path = "{}/{}".format(DIR_BLOG_POSTS, name)
     post = flatpages.get_or_404(path)
-    return render_template('blog-post.html', post=post)
-  
+    return render_template("blog-post.html", post=post)
 
 
-@main_blueprint.route('/miniblog', methods=['GET', 'POST'])
+@main_blueprint.route("/miniblog", methods=["GET", "POST"])
 def miniblog():
-
-# Get the posts
     posts = [p for p in flatpages if p.path.startswith(DIR_BLOG_POSTS)]
-    
-    # Filter for posts for publish
-    filtered_posts = []
-    for post in posts:
-        published_status = getattr(post, "meta").get('published')
-        # print(f"Check2 - Published status for {post.path}: {published_status}")
-        if published_status == True:
-            filtered_posts.append(post)
-# Sort the filtered posts by date
-    latest_posts = sorted(filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
-    
+    filtered_posts = [
+        p for p in posts if getattr(p, "meta").get("published") is True
+    ]
+    latest_posts = sorted(
+        filtered_posts, reverse=True, key=lambda p: getattr(p, "meta").get("date")
+    )
 
-    return render_template('miniblog.html', twitter_url=TWITTER_URL, 
-                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, posts=latest_posts)
+    return render_template(
+        "miniblog.html",
+        twitter_url=TWITTER_URL,
+        github_url=GITHUB_URL,
+        medium_url=MEDIUM_URL,
+        linkedin_url=LINKEDIN_URL,
+        posts=latest_posts,
+    )
 
 
-@main_blueprint.route('/portfolio', methods=['GET', 'POST'])
+@main_blueprint.route("/portfolio", methods=["GET", "POST"])
 def portfolio():
-    # Get the projects 
     projects = [p for p in flatpages if p.path.startswith(DIR_PROJECTS)]
-    
-    # Sort the filtered projects by date
-    latest_projects = sorted(projects, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+    latest_projects = sorted(
+        projects, reverse=True, key=lambda p: getattr(p, "meta").get("date")
+    )
 
-    return render_template('portfolio.html', twitter_url=TWITTER_URL, 
-                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, projects=latest_projects)
+    return render_template(
+        "portfolio.html",
+        twitter_url=TWITTER_URL,
+        github_url=GITHUB_URL,
+        medium_url=MEDIUM_URL,
+        linkedin_url=LINKEDIN_URL,
+        projects=latest_projects,
+    )
 
 
-@main_blueprint.route('/trainings', methods=['GET', 'POST'])
+@main_blueprint.route("/trainings", methods=["GET", "POST"])
 def trainings():
-    # Get the trainings
     trainings = [t for t in flatpages if t.path.startswith(DIR_TRAININGS)]
-    
-    # Sort the filtered projects by date
-    latest_trainings = sorted(trainings, reverse=True, key=lambda p: getattr(p, "meta").get('date'))
+    latest_trainings = sorted(
+        trainings, reverse=True, key=lambda p: getattr(p, "meta").get("date")
+    )
 
-    return render_template('trainings.html', twitter_url=TWITTER_URL, 
-                                        github_url=GITHUB_URL, medium_url=MEDIUM_URL, linkedin_url=LINKEDIN_URL, trainings=latest_trainings)
+    return render_template(
+        "trainings.html",
+        twitter_url=TWITTER_URL,
+        github_url=GITHUB_URL,
+        medium_url=MEDIUM_URL,
+        linkedin_url=LINKEDIN_URL,
+        trainings=latest_trainings,
+    )
