@@ -271,92 +271,135 @@
 
 
 
-    {% block contact %}
+{% block contact %}
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Whether you are curious about my profile, need expert advice, or want to discuss potential opportunities, I'm eager to connect...</p>
-      </div><!-- End Section Title -->
-      
-      <div class="container"><!-- FLASH MESSAGE  -->
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="flash-message">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>Whether you are curious about my profile, need expert advice, or want to discuss potential opportunities, I'm eager to connect...</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <!-- FLASH MESSAGES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show"
+             role="alert" id="flash-message">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{ message }}
         </div>
-        {% endfor %}<!--END FLASH MESSAGE -->
-      
-      <div class="container" data-aos="fade" data-aos-delay="100">
+      {% endfor %}
+    {% endwith %}
+    <!-- END FLASH MESSAGES -->
 
-        <div class="row gy-4">
+    <div class="container" data-aos="fade" data-aos-delay="100">
+      <div class="row gy-4">
 
-          <div class="col-lg-4">
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
-              <div>
-                <h3>Address</h3>
-                <p>London, United Kingdom</p>
-              </div>
-            </div><!-- End Info Item -->
+        <div class="col-lg-4">
+          <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+            <i class="bi bi-geo-alt flex-shrink-0"></i>
+            <div>
+              <h3>Address</h3>
+              <p>London, United Kingdom</p>
+            </div>
+          </div><!-- End Info Item -->
 
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-telephone flex-shrink-0"></i>
-              <div>
-                <h3>Call Me</h3>
-                <p>+44 773 379 7844</p>
-              </div>
-            </div><!-- End Info Item -->
+          <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+            <i class="bi bi-telephone flex-shrink-0"></i>
+            <div>
+              <h3>Call Me</h3>
+              <p>+44 773 379 7844</p>
+            </div>
+          </div><!-- End Info Item -->
 
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h3>Email Me</h3>
-                <p>soyinka.sowoolu@gmail.com</p>
-              </div>
-            </div><!-- End Info Item -->
-
-          </div>
-
-          <div class="col-lg-8">
-     
-
-          
-            <form id="contact-form" method="POST" action="{{ url_for('main.index') }}#contact" data-aos="fade-up" data-aos-delay="200">
-
- 
-              {{ form.hidden_tag() }}
-              <div class="row gy-4">
-              
-                <div class="col-md-6">
-                  {{ form.name(class="form-control") }}
-                </div>
-
-                <div class="col-md-6 ">
-                  {{ form.email(class="form-control") }}
-                </div>
-
-                <div class="col-md-12">
-                  {{ form.subject(class="form-control") }}
-                </div>
-
-                <div class="col-md-12">
-                  {{ form.message(class="form-control") }}
-                </div>
-
-                <div class="col-md-12 text-center">
-                
-                  <!-- <div class="sent-message">{{confirm}}.</div> -->
-
-                  {{ form.submit(class="btn btn-primary") }}
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
+          <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+            <i class="bi bi-envelope flex-shrink-0"></i>
+            <div>
+              <h3>Email Me</h3>
+              <p>soyinka.sowoolu@gmail.com</p>
+            </div>
+          </div><!-- End Info Item -->
         </div>
+
+        <div class="col-lg-8">
+          <form id="contact-form"
+                method="POST"
+                action="{{ url_for('main.index') }}#contact"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                novalidate>
+
+            {# CSRF token + auto-rendered hidden fields #}
+            {{ form.hidden_tag() }}
+
+            {# Timestamp written by the GET handler in views.py.
+               Rendering explicitly is safe and self-documenting,
+               even though hidden_tag() above already includes it. #}
+            {{ form.form_loaded_at() }}
+
+            <div class="row gy-4">
+
+              <div class="col-md-6">
+                {{ form.name(class="form-control") }}
+                {% if form.name.errors %}
+                  <div class="text-danger small mt-1">{{ form.name.errors[0] }}</div>
+                {% endif %}
+              </div>
+
+              <div class="col-md-6">
+                {{ form.email(class="form-control") }}
+                {% if form.email.errors %}
+                  <div class="text-danger small mt-1">{{ form.email.errors[0] }}</div>
+                {% endif %}
+              </div>
+
+              <div class="col-md-12">
+                {{ form.subject(class="form-control") }}
+                {% if form.subject.errors %}
+                  <div class="text-danger small mt-1">{{ form.subject.errors[0] }}</div>
+                {% endif %}
+              </div>
+
+              <div class="col-md-12">
+                {{ form.message(class="form-control") }}
+                {% if form.message.errors %}
+                  <div class="text-danger small mt-1">{{ form.message.errors[0] }}</div>
+                {% endif %}
+              </div>
+
+              {# ---------- HONEYPOTS ----------
+                 Off-screen, NOT display:none. Sophisticated bots
+                 inspect computed style and skip display:none /
+                 visibility:hidden fields. aria-hidden + tabindex=-1 +
+                 autocomplete=off keep these invisible to humans
+                 and assistive tech. #}
+              <div aria-hidden="true"
+                   tabindex="-1"
+                   style="position:absolute; left:-9999px; top:-9999px;
+                          height:0; width:0; overflow:hidden;">
+                <label>
+                  Website (leave blank)
+                  {{ form.website(tabindex="-1", autocomplete="off") }}
+                </label>
+                <label>
+                  Phone (leave blank)
+                  {{ form.phone_number(tabindex="-1", autocomplete="off") }}
+                </label>
+              </div>
+              {# -------- END HONEYPOTS -------- #}
+
+              <div class="col-md-12 text-center">
+                {{ form.submit(class="btn btn-primary") }}
+              </div>
+
+            </div>
+          </form>
+        </div><!-- End Contact Form -->
 
       </div>
+    </div>
+  </div>
 
 {% endblock %}
